@@ -1,4 +1,5 @@
-Dunduck Core v1.1.15
+[Dunduck Core v1.1.15](https://dunduck.com)
+
 ===========================
 
 What is Dunduck?

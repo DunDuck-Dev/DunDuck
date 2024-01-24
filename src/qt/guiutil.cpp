@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -260,7 +260,7 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent, bool fAllow
 
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a Reaction address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Dunduck address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
     widget->setValidator(new BitcoinAddressEntryValidator(parent, fAllowURI));
     widget->setCheckValidator(new BitcoinAddressCheckValidator(parent));
@@ -274,7 +274,7 @@ void setupAppearance(QWidget* parent, OptionsModel* model)
         QDialog dlg(parent);
         dlg.setObjectName("AppearanceSetup");
         dlg.setWindowTitle(QObject::tr("Appearance Setup"));
-        dlg.setWindowIcon(QIcon(":icons/reaction"));
+        dlg.setWindowIcon(QIcon(":icons/dunduck"));
         // And the widgets we add to it
         QLabel lblHeading(QObject::tr("Please choose your preferred settings for the appearance of %1").arg(QObject::tr(PACKAGE_NAME)), &dlg);
         lblHeading.setObjectName("lblHeading");
@@ -311,8 +311,8 @@ void setupAppearance(QWidget* parent, OptionsModel* model)
 
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no reaction: URI
-    if(!uri.isValid() || uri.scheme() != QString("reaction"))
+    // return if URI is not valid or is no dunduck: URI
+    if(!uri.isValid() || uri.scheme() != QString("dunduck"))
         return false;
 
     SendCoinsRecipient rv;
@@ -354,7 +354,7 @@ bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!BitcoinUnits::parse(BitcoinUnits::RTC, i->second, &rv.amount))
+                if(!BitcoinUnits::parse(BitcoinUnits::DUN, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -386,12 +386,12 @@ bool validateBitcoinURI(const QString& uri)
 
 QString formatBitcoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("reaction:%1").arg(info.address);
+    QString ret = QString("dunduck:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::RTC, info.amount, false, BitcoinUnits::separatorNever));
+        ret += QString("?amount=%1").arg(BitcoinUnits::format(BitcoinUnits::DUN, info.amount, false, BitcoinUnits::separatorNever));
         paramCount++;
     }
 
@@ -592,7 +592,7 @@ void openConfigfile()
 {
     fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", BITCOIN_CONF_FILENAME));
 
-    /* Open reaction.conf with the associated application */
+    /* Open dunduck.conf with the associated application */
     if (fs::exists(pathConfig))
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -753,15 +753,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Reaction Core.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Dunduck Core.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Reaction Core (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Reaction Core (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Dunduck Core (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Dunduck Core (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for "Reaction Core*.lnk"
+    // check for "Dunduck Core*.lnk"
     return fs::exists(StartupShortcutPath());
 }
 
@@ -851,8 +851,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = gArgs.GetChainName();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "reaction.desktop";
-    return GetAutostartDir() / strprintf("reaction-%s.lnk", chain);
+        return GetAutostartDir() / "dunduck.desktop";
+    return GetAutostartDir() / strprintf("dunduck-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -892,13 +892,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = gArgs.GetChainName();
-        // Write a reaction.desktop file to the autostart directory:
+        // Write a dunduck.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Reaction Core\n";
+            optionFile << "Name=Dunduck Core\n";
         else
-            optionFile << strprintf("Name=Reaction Core (%s)\n", chain);
+            optionFile << strprintf("Name=Dunduck Core (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -919,7 +919,7 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
         return nullptr;
     }
 
-    // loop through the list of startup items and try to find the Reaction Core app
+    // loop through the list of startup items and try to find the Dunduck Core app
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
@@ -976,7 +976,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
     LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, bitcoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add Reaction Core app to startup item list
+        // add Dunduck Core app to startup item list
         LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, bitcoinAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {
@@ -1118,7 +1118,7 @@ void loadStyleSheet(bool fForceUpdate)
 
         std::vector<QString> vecFiles;
         // If light/dark theme is used load general styles first
-        if (reactionThemeActive()) {
+        if (dunduckThemeActive()) {
             vecFiles.push_back(pathToFile(generalTheme));
         }
         vecFiles.push_back(pathToFile(getActiveTheme()));
@@ -1707,7 +1707,7 @@ QString getActiveTheme()
     return theme;
 }
 
-bool reactionThemeActive()
+bool dunduckThemeActive()
 {
     QSettings settings;
     QString theme = settings.value("theme", defaultTheme).toString();
@@ -1726,7 +1726,7 @@ void disableMacFocusRect(const QWidget* w)
 #ifdef Q_OS_MAC
     for (const auto& c : w->findChildren<QWidget*>()) {
         if (c->testAttribute(Qt::WA_MacShowFocusRect)) {
-            c->setAttribute(Qt::WA_MacShowFocusRect, !reactionThemeActive());
+            c->setAttribute(Qt::WA_MacShowFocusRect, !dunduckThemeActive());
             setRectsDisabled.emplace(c);
         }
     }
@@ -1740,7 +1740,7 @@ void updateMacFocusRects()
     auto it = setRectsDisabled.begin();
     while (it != setRectsDisabled.end()) {
         if (allWidgets.contains(*it)) {
-            (*it)->setAttribute(Qt::WA_MacShowFocusRect, !reactionThemeActive());
+            (*it)->setAttribute(Qt::WA_MacShowFocusRect, !dunduckThemeActive());
             ++it;
         } else {
             it = setRectsDisabled.erase(it);

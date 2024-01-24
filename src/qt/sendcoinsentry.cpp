@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -31,7 +31,7 @@ SendCoinsEntry::SendCoinsEntry(QWidget* parent, bool hideFuture) :
 
     setButtonIcons();
 
-    // normal reaction address field
+    // normal dunduck address field
     GUIUtil::setupAddressWidget(ui->payTo, this, true);
 
     GUIUtil::setFont({ui->payToLabel,
@@ -135,7 +135,7 @@ void SendCoinsEntry::futureToggleChanged() {
     bool isFuture = ui->futureCb->isChecked();
     if(isFuture) {
         char feeDisplay[18];
-        sprintf(feeDisplay, "%d RTC", getFutureFees());
+        sprintf(feeDisplay, "%d DUN", getFutureFees());
         ui->feeDisplay->setText(feeDisplay);
     }
     ui->maturityLb->setVisible(isFuture);

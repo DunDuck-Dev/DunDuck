@@ -14,7 +14,7 @@
 #include <util.h>
 #include <validation.h>
 
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <stdint.h>
 

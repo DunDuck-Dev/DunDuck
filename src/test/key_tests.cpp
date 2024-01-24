@@ -9,7 +9,7 @@
 #include <uint256.h>
 #include <util.h>
 #include <utilstrencodings.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <string>
 #include <vector>

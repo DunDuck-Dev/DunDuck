@@ -32,7 +32,7 @@
 #include <warnings.h>
 
 #if defined(HAVE_CONFIG_H)
-#include <config/reaction-config.h>
+#include <config/dunduck-config.h>
 #endif
 #ifdef ENABLE_WALLET
 #include <coinjoin/coinjoin-client-options.h>

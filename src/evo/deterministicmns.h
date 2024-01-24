@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef REACTION_DETERMINISTICMNS_H
-#define REACTION_DETERMINISTICMNS_H
+#ifndef DUNDUCK_DETERMINISTICMNS_H
+#define DUNDUCK_DETERMINISTICMNS_H
 
 #include <arith_uint256.h>
 #include <bls/bls.h>
@@ -723,4 +723,4 @@ private:
 
 extern std::unique_ptr<CDeterministicMNManager> deterministicMNManager;
 
-#endif //REACTION_DETERMINISTICMNS_H
+#endif //DUNDUCK_DETERMINISTICMNS_H

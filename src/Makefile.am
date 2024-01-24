@@ -1,6 +1,6 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2014-2018 The Dash Core developers
-# Copyright (c) 2020-2022 The Reaction developers
+# Copyright (c) 2020-2022 The Dunduck developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,36 +49,36 @@ BITCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 BLS_LIBS=-lbls-dash -lgmp
 
-LIBBITCOIN_SERVER=libreaction_server.a
-LIBBITCOIN_COMMON=libreaction_common.a
-LIBBITCOIN_CONSENSUS=libreaction_consensus.a
-LIBBITCOIN_CLI=libreaction_cli.a
-LIBBITCOIN_UTIL=libreaction_util.a
-LIBBITCOIN_CRYPTO_BASE=crypto/libreaction_crypto_base.a
-LIBBITCOINQT=qt/libreactionqt.a
+LIBBITCOIN_SERVER=libdunduck_server.a
+LIBBITCOIN_COMMON=libdunduck_common.a
+LIBBITCOIN_CONSENSUS=libdunduck_consensus.a
+LIBBITCOIN_CLI=libdunduck_cli.a
+LIBBITCOIN_UTIL=libdunduck_util.a
+LIBBITCOIN_CRYPTO_BASE=crypto/libdunduck_crypto_base.a
+LIBBITCOINQT=qt/libdunduckqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBBITCOIN_ZMQ=libreaction_zmq.a
+LIBBITCOIN_ZMQ=libdunduck_zmq.a
 endif
 if BUILD_BITCOIN_LIBS
-LIBBITCOINCONSENSUS=libreactionconsensus.la
+LIBBITCOINCONSENSUS=libdunduckconsensus.la
 endif
 if ENABLE_WALLET
-LIBBITCOIN_WALLET=libreaction_wallet.a
+LIBBITCOIN_WALLET=libdunduck_wallet.a
 endif
 
 LIBBITCOIN_CRYPTO= $(LIBBITCOIN_CRYPTO_BASE)
 if ENABLE_SSE41
-LIBBITCOIN_CRYPTO_SSE41 = crypto/libreaction_crypto_sse41.a
+LIBBITCOIN_CRYPTO_SSE41 = crypto/libdunduck_crypto_sse41.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SSE41)
 endif
 if ENABLE_AVX2
-LIBBITCOIN_CRYPTO_AVX2 = crypto/libreaction_crypto_avx2.a
+LIBBITCOIN_CRYPTO_AVX2 = crypto/libdunduck_crypto_avx2.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_AVX2)
 endif
 if ENABLE_SHANI
-LIBBITCOIN_CRYPTO_SHANI = crypto/libreaction_crypto_shani.a
+LIBBITCOIN_CRYPTO_SHANI = crypto/libdunduck_crypto_shani.a
 LIBBITCOIN_CRYPTO += $(LIBBITCOIN_CRYPTO_SHANI)
 endif
 
@@ -105,15 +105,15 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += reactiond
+  bin_PROGRAMS += dunduckd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += reaction-cli reaction-tx
+  bin_PROGRAMS += dunduck-cli dunduck-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# reaction core #
+# dunduck core #
 BITCOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
@@ -294,12 +294,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libreaction_util_a-clientversion.$(OBJEXT): obj/build.h
+libdunduck_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between reactiond and reaction-qt
-libreaction_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libreaction_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_server_a_SOURCES = \
+# server: shared between dunduckd and dunduck-qt
+libdunduck_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libdunduck_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   batchedlogger.cpp \
@@ -386,9 +386,9 @@ libreaction_server_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
-libreaction_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
-libreaction_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_zmq_a_SOURCES = \
+libdunduck_zmq_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(ZMQ_CFLAGS)
+libdunduck_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp \
@@ -396,11 +396,11 @@ libreaction_zmq_a_SOURCES = \
 endif
 
 
-# wallet: shared between reactiond and reaction-qt, but only linked
+# wallet: shared between dunduckd and dunduck-qt, but only linked
 # when wallet enabled
-libreaction_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libreaction_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_wallet_a_SOURCES = \
+libdunduck_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libdunduck_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_wallet_a_SOURCES = \
   coinjoin/coinjoin-client.cpp \
   coinjoin/coinjoin-client-options.cpp \
   coinjoin/coinjoin-util.cpp \
@@ -419,9 +419,9 @@ libreaction_wallet_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 # crypto primitives library
-crypto_libreaction_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
-crypto_libreaction_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
-crypto_libreaction_crypto_base_a_SOURCES = \
+crypto_libdunduck_crypto_base_a_CPPFLAGS = $(AM_CPPFLAGS) $(PIC_FLAGS)
+crypto_libdunduck_crypto_base_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(PIC_FLAGS)
+crypto_libdunduck_crypto_base_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha_poly_aead.h \
@@ -507,31 +507,31 @@ crypto_libreaction_crypto_base_a_SOURCES = \
   crypto/sha512.h
 
 if USE_ASM
-crypto_libreaction_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libdunduck_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
-crypto_libreaction_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libreaction_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libreaction_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
-crypto_libreaction_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
-crypto_libreaction_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
+crypto_libdunduck_crypto_sse41_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libdunduck_crypto_sse41_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libdunduck_crypto_sse41_a_CXXFLAGS += $(SSE41_CXXFLAGS)
+crypto_libdunduck_crypto_sse41_a_CPPFLAGS += -DENABLE_SSE41
+crypto_libdunduck_crypto_sse41_a_SOURCES = crypto/sha256_sse41.cpp
 
-crypto_libreaction_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libreaction_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libreaction_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
-crypto_libreaction_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
-crypto_libreaction_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
+crypto_libdunduck_crypto_avx2_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libdunduck_crypto_avx2_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libdunduck_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
+crypto_libdunduck_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
+crypto_libdunduck_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
-crypto_libreaction_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libreaction_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libreaction_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
-crypto_libreaction_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
-crypto_libreaction_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
+crypto_libdunduck_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libdunduck_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libdunduck_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
+crypto_libdunduck_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
+crypto_libdunduck_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
-libreaction_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libreaction_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_consensus_a_SOURCES = \
+libdunduck_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libdunduck_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_consensus_a_SOURCES = \
   amount.h \
   founder_payment.h \
   arith_uint256.cpp \
@@ -555,7 +555,7 @@ libreaction_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/reactionconsensus.cpp \
+  script/dunduckconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -572,10 +572,10 @@ libreaction_consensus_a_SOURCES = \
   utilstrencodings.h \
   version.h
 
-# common: shared between reactiond, and reaction-qt and non-server tools
-libreaction_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libreaction_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_common_a_SOURCES = \
+# common: shared between dunduckd, and dunduck-qt and non-server tools
+libdunduck_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libdunduck_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
   founder_payment.cpp \
@@ -606,9 +606,9 @@ libreaction_common_a_SOURCES = \
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libreaction_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libreaction_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_util_a_SOURCES = \
+libdunduck_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libdunduck_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_util_a_SOURCES = \
   bls/bls_batchverifier.h \
   bls/bls_ies.cpp \
   bls/bls_ies.h \
@@ -637,31 +637,31 @@ libreaction_util_a_SOURCES = \
   $(BITCOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libreaction_util_a_SOURCES += compat/glibc_compat.cpp
+libdunduck_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += -Wl,--wrap=log2f -Wl,--wrap=__divmoddi4
 endif
 
-# cli: shared between reaction-cli and reaction-qt
-libreaction_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-libreaction_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libreaction_cli_a_SOURCES = \
+# cli: shared between dunduck-cli and dunduck-qt
+libdunduck_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+libdunduck_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduck_cli_a_SOURCES = \
   rpc/client.cpp \
   $(BITCOIN_CORE_H)
 
-nodist_libreaction_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libdunduck_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# reactiond binary #
-reactiond_SOURCES = reactiond.cpp
-reactiond_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-reactiond_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-reactiond_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# dunduckd binary #
+dunduckd_SOURCES = dunduckd.cpp
+dunduckd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+dunduckd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dunduckd_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-reactiond_SOURCES += reactiond-res.rc
+dunduckd_SOURCES += dunduckd-res.rc
 endif
 
-reactiond_LDADD = \
+dunduckd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_WALLET) \
   $(LIBBITCOIN_COMMON) \
@@ -675,37 +675,37 @@ reactiond_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-reactiond_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS)
+dunduckd_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(BLS_LIBS)
 
-# reaction-cli binary #
-reaction_cli_SOURCES = reaction-cli.cpp
-reaction_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-reaction_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-reaction_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# dunduck-cli binary #
+dunduck_cli_SOURCES = dunduck-cli.cpp
+dunduck_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+dunduck_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dunduck_cli_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-reaction_cli_SOURCES += reaction-cli-res.rc
+dunduck_cli_SOURCES += dunduck-cli-res.rc
 endif
 
-reaction_cli_LDADD = \
+dunduck_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
-reaction_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
+dunduck_cli_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS) $(BLS_LIBS)
 #
 
-# reaction-tx binary #
-reaction_tx_SOURCES = reaction-tx.cpp
-reaction_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-reaction_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-reaction_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+# dunduck-tx binary #
+dunduck_tx_SOURCES = dunduck-tx.cpp
+dunduck_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+dunduck_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+dunduck_tx_LDFLAGS = $(LDFLAGS_WRAP_EXCEPTIONS) $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-reaction_tx_SOURCES += reaction-tx-res.rc
+dunduck_tx_SOURCES += dunduck-tx-res.rc
 endif
 
-reaction_tx_LDADD = \
+dunduck_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -713,22 +713,22 @@ reaction_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-reaction_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS)
+dunduck_tx_LDADD += $(BACKTRACE_LIB) $(BOOST_LIBS) $(CRYPTO_LIBS) $(BLS_LIBS)
 #
 
-# reactionconsensus library #
+# dunduckconsensus library #
 if BUILD_BITCOIN_LIBS
-include_HEADERS = script/reactionconsensus.h
-libreactionconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libreaction_crypto_base_a_SOURCES) $(libreaction_consensus_a_SOURCES)
+include_HEADERS = script/dunduckconsensus.h
+libdunduckconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libdunduck_crypto_base_a_SOURCES) $(libdunduck_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libreactionconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libdunduckconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libreactionconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-libreactionconsensus_la_LIBADD = $(LIBSECP256K1) $(BLS_LIBS)
-libreactionconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
-libreactionconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libdunduckconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+libdunduckconsensus_la_LIBADD = $(LIBSECP256K1) $(BLS_LIBS)
+libdunduckconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_BITCOIN_INTERNAL
+libdunduckconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -761,12 +761,12 @@ EXTRA_DIST = $(CTAES_DIST)
 EXTRA_DIST += $(IMMER_DIST)
 
 
-config/reaction-config.h: config/stamp-h1
+config/dunduck-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/reaction-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/dunduck-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/reaction-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/reaction-config.h.in
+$(top_srcdir)/$(subdir)/config/dunduck-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/dunduck-config.h.in
 
 
 clean-local:

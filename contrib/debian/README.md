@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package reactiond/reaction-qt
-for Debian-based Linux systems. If you compile reactiond/reaction-qt yourself, there are some useful files here.
+This directory contains files used to package dunduckd/dunduck-qt
+for Debian-based Linux systems. If you compile dunduckd/dunduck-qt yourself, there are some useful files here.
 
-## reaction: URI support ##
+## dunduck: URI support ##
 
 
-reaction-qt.desktop  (Gnome / Open Desktop)
+dunduck-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install reaction-qt.desktop
+	sudo desktop-file-install dunduck-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your reaction-qt binary to `/usr/bin`
-and the `../../share/pixmaps/reaction128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your dunduck-qt binary to `/usr/bin`
+and the `../../share/pixmaps/dunduck128.png` to `/usr/share/pixmaps`
 
-reaction-qt.protocol (KDE)
+dunduck-qt.protocol (KDE)
 

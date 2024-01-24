@@ -102,7 +102,7 @@ public:
         vOutpoints.assign(setSelected.begin(), setSelected.end());
     }
 
-    // Reaction-specific helpers
+    // Dunduck-specific helpers
 
     void UseCoinJoin(bool fUseCoinJoin)
     {

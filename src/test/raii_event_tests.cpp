@@ -12,7 +12,7 @@
 
 #include <support/events.h>
 
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <vector>
 

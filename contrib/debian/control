@@ -1,8 +1,8 @@
-Source: reaction
+Source: dunduck
 Section: utils
 Priority: optional
-Maintainer: Holger Schinzel <holger@reaction.network>
-Uploaders: Holger Schinzel <holger@reaction.network>
+Maintainer: Holger Schinzel <holger@dunduck.network>
+Uploaders: Holger Schinzel <holger@dunduck.network>
 Build-Depends: debhelper,
  devscripts,
  automake,
@@ -26,45 +26,45 @@ Build-Depends: debhelper,
  python,
  libzmq3-dev
 Standards-Version: 3.9.2
-Homepage: https://www.reaction.network/
-Vcs-Git: git://github.com/reaction/reaction.git
-Vcs-Browser: https://github.com/reaction/reaction
+Homepage: https://www.dunduck.network/
+Vcs-Git: git://github.com/dunduck/dunduck.git
+Vcs-Browser: https://github.com/dunduck/dunduck
 
-Package: reactiond
+Package: dunduckd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Reaction is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Reaction uses peer-to-peer
+ Dunduck is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Dunduck uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Reaction Core
+ and issuing money are carried out collectively by the network. Dunduck Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides the daemon, reactiond, and the CLI tool
- reaction-cli to interact with the daemon.
+ This package provides the daemon, dunduckd, and the CLI tool
+ dunduck-cli to interact with the daemon.
 
-Package: reaction-qt
+Package: dunduck-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Reaction is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Reaction uses peer-to-peer
+ Dunduck is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Dunduck uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Reaction Core
+ and issuing money are carried out collectively by the network. Dunduck Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides Reaction-Qt, a GUI for Reaction based on Qt.
+ This package provides Dunduck-Qt, a GUI for Dunduck based on Qt.
 
-Package: reaction-tx
+Package: dunduck-tx
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer digital currency - standalone transaction tool
- Reaction is an experimental new digital currency that enables instant, private
- payments to anyone, anywhere in the world. Reaction uses peer-to-peer
+ Dunduck is an experimental new digital currency that enables instant, private
+ payments to anyone, anywhere in the world. Dunduck uses peer-to-peer
  technology to operate with no central authority: managing transactions
- and issuing money are carried out collectively by the network. Reaction Core
+ and issuing money are carried out collectively by the network. Dunduck Core
  is the name of the open source software which enables the use of this currency.
  .
- This package provides reaction-tx, a command-line transaction creation
- tool which can be used without a reaction daemon.  Some means of
+ This package provides dunduck-tx, a command-line transaction creation
+ tool which can be used without a dunduck daemon.  Some means of
  exchanging minimal transaction data with peers is still required.

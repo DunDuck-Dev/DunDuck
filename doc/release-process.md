@@ -1,9 +1,9 @@
 Release Process
 ====================
 
-* Update translations, see [translation_process.md](https://github.com/reaction/reaction/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations, see [translation_process.md](https://github.com/dunduck/dunduck/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/reaction/reaction/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/dunduck/dunduck/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -19,7 +19,7 @@ Before every minor and major release:
 
 Before every major release:
 
-* Update hardcoded [seeds](/contrib/seeds/README.md). TODO: Give example PR for Reaction
+* Update hardcoded [seeds](/contrib/seeds/README.md). TODO: Give example PR for Dunduck
 * Update [`BLOCK_CHAIN_SIZE`](/src/qt/intro.cpp) to the current size plus some overhead.
 * Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate. Use the output of the RPC `getchaintxstats`, see
   [this pull request](https://github.com/bitcoin/bitcoin/pull/12270) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
@@ -32,12 +32,12 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 Check out the source code in the following directory hierarchy.
 
 	cd /path/to/your/toplevel/build
-	git clone https://github.com/reaction/gitian.sigs.git
-	git clone https://github.com/reaction/reaction-detached-sigs.git
+	git clone https://github.com/dunduck/gitian.sigs.git
+	git clone https://github.com/dunduck/dunduck-detached-sigs.git
 	git clone https://github.com/devrandom/gitian-builder.git
-	git clone https://github.com/reaction/reaction.git
+	git clone https://github.com/dunduck/dunduck.git
 
-### Reaction Core maintainers/release engineers, suggestion for writing release notes
+### Dunduck Core maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -57,7 +57,7 @@ If you're using the automated script (found in [contrib/gitian-build.py](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./reaction
+    pushd ./dunduck
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.12.3)
     git fetch
@@ -91,10 +91,10 @@ Create the OS X SDK tarball, see the [OS X readme](README_osx.md) for details, a
 
 NOTE: Gitian is sometimes unable to download files. If you have errors, try the step below.
 
-By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in reaction, then:
+By default, Gitian will fetch source files as needed. To cache them ahead of time, make sure you have checked out the tag you want to build in dunduck, then:
 
     pushd ./gitian-builder
-    make -C ../reaction/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../dunduck/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -102,50 +102,50 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url reaction=/path/to/reaction,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url dunduck=/path/to/dunduck,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Reaction Core for Linux, Windows, and OS X:
+### Build and sign Dunduck Core for Linux, Windows, and OS X:
 
     pushd ./gitian-builder
-    ./bin/gbuild --num-make 2 --memory 3000 --commit reaction=v${VERSION} ../reaction/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../reaction/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/reaction-*.tar.gz build/out/src/reaction-*.tar.gz ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit dunduck=v${VERSION} ../dunduck/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../dunduck/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/dunduck-*.tar.gz build/out/src/dunduck-*.tar.gz ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit reaction=v${VERSION} ../reaction/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../reaction/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/reaction-*-win-unsigned.tar.gz inputs/reaction-win-unsigned.tar.gz
-    mv build/out/reaction-*.zip build/out/reaction-*.exe ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit dunduck=v${VERSION} ../dunduck/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../dunduck/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/dunduck-*-win-unsigned.tar.gz inputs/dunduck-win-unsigned.tar.gz
+    mv build/out/dunduck-*.zip build/out/dunduck-*.exe ../
 
-    ./bin/gbuild --num-make 2 --memory 3000 --commit reaction=v${VERSION} ../reaction/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../reaction/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/reaction-*-osx-unsigned.tar.gz inputs/reaction-osx-unsigned.tar.gz
-    mv build/out/reaction-*.tar.gz build/out/reaction-*.dmg ../
+    ./bin/gbuild --num-make 2 --memory 3000 --commit dunduck=v${VERSION} ../dunduck/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../dunduck/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/dunduck-*-osx-unsigned.tar.gz inputs/dunduck-osx-unsigned.tar.gz
+    mv build/out/dunduck-*.tar.gz build/out/dunduck-*.dmg ../
     popd
 
 Build output expected:
 
-  1. source tarball (`reaction-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`reaction-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`reaction-${VERSION}-win[32|64]-setup-unsigned.exe`, `reaction-${VERSION}-win[32|64].zip`)
-  4. OS X unsigned installer and dist tarball (`reaction-${VERSION}-osx-unsigned.dmg`, `reaction-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`dunduck-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`dunduck-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`dunduck-${VERSION}-win[32|64]-setup-unsigned.exe`, `dunduck-${VERSION}-win[32|64].zip`)
+  4. OS X unsigned installer and dist tarball (`dunduck-${VERSION}-osx-unsigned.dmg`, `dunduck-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import reaction/contrib/gitian-keys/*.pgp
+    gpg --import dunduck/contrib/gitian-keys/*.pgp
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../reaction/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../reaction/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../reaction/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../dunduck/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../dunduck/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../dunduck/contrib/gitian-descriptors/gitian-osx.yml
     popd
 
 ### Next steps:
@@ -166,22 +166,22 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer reaction-osx-unsigned.tar.gz to osx for signing
-    tar xf reaction-osx-unsigned.tar.gz
+    transfer dunduck-osx-unsigned.tar.gz to osx for signing
+    tar xf dunduck-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID" -o runtime
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf reaction-win-unsigned.tar.gz
+    tar xf dunduck-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/reaction-detached-sigs
+    cd ~/dunduck-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -194,25 +194,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/OS X detached signatures:
 
 - Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [reaction-detached-sigs](https://github.com/reaction/reaction-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [dunduck-detached-sigs](https://github.com/dunduck/dunduck-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed OS X binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../reaction/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../reaction/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../reaction/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/reaction-osx-signed.dmg ../reaction-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../dunduck/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../dunduck/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../dunduck/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/dunduck-osx-signed.dmg ../dunduck-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../reaction/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../reaction/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../reaction/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/reaction-*win64-setup.exe ../reaction-${VERSION}-win64-setup.exe
-    mv build/out/reaction-*win32-setup.exe ../reaction-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../dunduck/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer "$SIGNER" --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../dunduck/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../dunduck/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/dunduck-*win64-setup.exe ../dunduck-${VERSION}-win64-setup.exe
+    mv build/out/dunduck-*win32-setup.exe ../dunduck-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -234,23 +234,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-reaction-${VERSION}-aarch64-linux-gnu.tar.gz
-reaction-${VERSION}-arm-linux-gnueabihf.tar.gz
-reaction-${VERSION}-i686-pc-linux-gnu.tar.gz
-reaction-${VERSION}-x86_64-linux-gnu.tar.gz
-reaction-${VERSION}-osx64.tar.gz
-reaction-${VERSION}-osx.dmg
-reaction-${VERSION}.tar.gz
-reaction-${VERSION}-win32-setup.exe
-reaction-${VERSION}-win32.zip
-reaction-${VERSION}-win64-setup.exe
-reaction-${VERSION}-win64.zip
+dunduck-${VERSION}-aarch64-linux-gnu.tar.gz
+dunduck-${VERSION}-arm-linux-gnueabihf.tar.gz
+dunduck-${VERSION}-i686-pc-linux-gnu.tar.gz
+dunduck-${VERSION}-x86_64-linux-gnu.tar.gz
+dunduck-${VERSION}-osx64.tar.gz
+dunduck-${VERSION}-osx.dmg
+dunduck-${VERSION}.tar.gz
+dunduck-${VERSION}-win32-setup.exe
+dunduck-${VERSION}-win32.zip
+dunduck-${VERSION}-win64-setup.exe
+dunduck-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the Gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run Gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the reaction.network server*.
+space *do not upload these to the dunduck.network server*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -260,20 +260,20 @@ rm SHA256SUMS
 (the digest algorithm is forced to sha256 to avoid confusion of the `Hash:` header that GPG adds with the SHA256 used for the files)
 Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spurious/nonsensical entry.
 
-- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the reaction.network server
+- Upload zips and installers, as well as `SHA256SUMS.asc` from last step, to the dunduck.network server
 
-- Update reaction.network
+- Update dunduck.network
 
 - Announce the release:
 
-  - Release on Reaction forum: https://www.reaction.network/forum/topic/official-announcements.54/
+  - Release on Dunduck forum: https://www.dunduck.network/forum/topic/official-announcements.54/
 
-  - Optionally Discord, twitter, reddit /r/Reaction, ... but this will usually sort out itself
+  - Optionally Discord, twitter, reddit /r/Dunduck, ... but this will usually sort out itself
 
-  - Notify flare so that he can start building [the PPAs](https://launchpad.net/~reaction.network/+archive/ubuntu/reaction)
+  - Notify flare so that he can start building [the PPAs](https://launchpad.net/~dunduck.network/+archive/ubuntu/dunduck)
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/reaction/reaction/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/dunduck/dunduck/releases/new) with a link to the archived release notes.
 
   - Celebrate

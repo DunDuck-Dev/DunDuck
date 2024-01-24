@@ -1,9 +1,9 @@
 // Copyright (c) 2014-2019 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 
 #include <cachemap.h>
 
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <boost/test/unit_test.hpp>
 

@@ -10,7 +10,7 @@
 #include <script/script.h>
 #include <serialize.h>
 #include <streams.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 #include <util.h>
 #include <utilstrencodings.h>
 #include <version.h>

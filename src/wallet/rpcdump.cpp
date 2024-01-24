@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -330,7 +330,7 @@ UniValue removeaddress(const JSONRPCRequest& request)
     CTxDestination address = DecodeDestination(request.params[0].get_str());
     if (IsValidDestination(address)) {
         if (!(IsMine(*pwallet, address) & ISMINE_WATCH_ONLY)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Reaction address - must be watch-only");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Dunduck address - must be watch-only");
         }
         // Remove from address book
         pwallet->DelAddressBook(address);
@@ -340,7 +340,7 @@ UniValue removeaddress(const JSONRPCRequest& request)
         pwallet->RemoveWatchOnly(script);
         pwallet->MarkDirty();
     } else {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Reaction address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Dunduck address");
     }
 
     return NullUniValue;
@@ -809,7 +809,7 @@ UniValue dumpprivkey(const JSONRPCRequest& request)
             "\nReveals the private key corresponding to 'address'.\n"
             "Then the importprivkey can be used with this output\n"
             "\nArguments:\n"
-            "1. \"address\"   (string, required) The reaction address for the private key\n"
+            "1. \"address\"   (string, required) The dunduck address for the private key\n"
             "\nResult:\n"
             "\"key\"                (string) The private key\n"
             "\nExamples:\n"
@@ -899,7 +899,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
             "Note that if your wallet contains keys which are not derived from your HD seed (e.g. imported keys), these are not covered by\n"
             "only backing up the seed itself, and must be backed up too (e.g. ensure you back up the whole dumpfile).\n"
             "\nArguments:\n"
-            "1. \"filename\"    (string, required) The filename with path (either absolute or relative to reactiond)\n"
+            "1. \"filename\"    (string, required) The filename with path (either absolute or relative to dunduckd)\n"
             "\nResult:\n"
             "{                           (json object)\n"
             "  \"keys\" : {            (int) The number of keys contained in the wallet dump\n"
@@ -957,7 +957,7 @@ UniValue dumpwallet(const JSONRPCRequest& request)
     file << "\n";
 
     UniValue obj(UniValue::VOBJ);
-    obj.pushKV("reactionversion", CLIENT_BUILD);
+    obj.pushKV("dunduckversion", CLIENT_BUILD);
     obj.pushKV("lastblockheight", chainActive.Height());
     obj.pushKV("lastblockhash", chainActive.Tip()->GetBlockHash().ToString());
     obj.pushKV("lastblocktime", FormatISO8601DateTime(chainActive.Tip()->GetBlockTime()));
@@ -1502,7 +1502,7 @@ UniValue importmulti(const JSONRPCRequest& mainRequest)
                                       "block from time %d, which is after or within %d seconds of key creation, and "
                                       "could contain transactions pertaining to the key. As a result, transactions "
                                       "and coins using this key may not appear in the wallet. This error could be "
-                                      "caused by pruning or data corruption (see reactiond log for details) and could "
+                                      "caused by pruning or data corruption (see dunduckd log for details) and could "
                                       "be dealt with by downloading and rescanning the relevant blocks (see -reindex "
                                       "and -rescan options).",
                                 GetImportTimestamp(request, now), scannedTime - TIMESTAMP_WINDOW - 1, TIMESTAMP_WINDOW)));

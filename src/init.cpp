@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/reaction-config.h>
+#include <config/dunduck-config.h>
 #endif
 
 #include <init.h>
@@ -116,7 +116,7 @@ public:
     void Stop() const override {}
     void Close() const override {}
 
-    // Reaction Specific WalletInitInterface InitCoinJoinSettings
+    // Dunduck Specific WalletInitInterface InitCoinJoinSettings
     void AutoLockSmartnodeCollaterals() const override {}
     void InitCoinJoinSettings() const override {}
     void InitKeePass() const override {}
@@ -183,7 +183,7 @@ bool ShutdownRequested()
 /**
  * This is a minimally invasive approach to shutdown on LevelDB read errors from the
  * chainstate, while keeping user interface out of the common library, which is shared
- * between reactiond, and reaction-qt and non-server tools.
+ * between dunduckd, and dunduck-qt and non-server tools.
 */
 class CCoinsViewErrorCatcher final : public CCoinsViewBacked
 {
@@ -237,7 +237,7 @@ void PrepareShutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("reaction-shutoff");
+    RenameThread("dunduck-shutoff");
     mempool.AddTransactionsUpdated(1);
     StopHTTPRPC();
     StopREST();
@@ -597,7 +597,7 @@ void SetupServerArgs()
     gArgs.AddArg("-printtoconsole", "Send trace/debug info to console instead of debug.log file", false, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-printtodebuglog", strprintf("Send trace/debug info to debug.log file (default: %u)", 1), false, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-shrinkdebugfile", "Shrink debug.log file on client startup (default: 1 when no -debug)", false, OptionsCategory::DEBUG_TEST);
-    gArgs.AddArg("-sporkaddr=<reactionaddress>", "Override spork address. Only useful for regtest and devnet. Using this on mainnet or testnet will ban you.", false, OptionsCategory::DEBUG_TEST);
+    gArgs.AddArg("-sporkaddr=<dunduckaddress>", "Override spork address. Only useful for regtest and devnet. Using this on mainnet or testnet will ban you.", false, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-sporkkey=<privatekey>", "Set the private key to be used for signing spork messages.", false, OptionsCategory::DEBUG_TEST);
     gArgs.AddArg("-uacomment=<cmt>", "Append comment to the user agent string", false, OptionsCategory::DEBUG_TEST);
 
@@ -606,7 +606,7 @@ void SetupServerArgs()
     gArgs.AddArg("-llmq-data-recovery=<n>", strprintf("Enable automated quorum data recovery (default: %u)", llmq::DEFAULT_ENABLE_QUORUM_DATA_RECOVERY), false, OptionsCategory::SMARTNODE);
     gArgs.AddArg("-llmq-qvvec-sync=<quorum_name>:<mode>", strprintf("Defines from which LLMQ type the smartnode should sync quorum verification vectors. Can be used multiple times with different LLMQ types. <mode>: %d (sync always from all quorums of the type defined by <quorum_name>), %d (sync from all quorums of the type defined by <quorum_name> if a member of any of the quorums)", (int32_t)llmq::QvvecSyncMode::Always, (int32_t)llmq::QvvecSyncMode::OnlyIfTypeMember), false, OptionsCategory::SMARTNODE);
     gArgs.AddArg("-smartnodeblsprivkey=<hex>", "Set the smartnode BLS private key and enable the client to act as a smartnode", false, OptionsCategory::SMARTNODE);
-    gArgs.AddArg("-platform-user=<user>", "Set the username for the \"platform user\", a restricted user intended to be used by Reaction Platform, to the specified username.", false, OptionsCategory::SMARTNODE);
+    gArgs.AddArg("-platform-user=<user>", "Set the username for the \"platform user\", a restricted user intended to be used by Dunduck Platform, to the specified username.", false, OptionsCategory::SMARTNODE);
 
     gArgs.AddArg("-acceptnonstdtxn", strprintf("Relay and mine \"non-standard\" transactions (%sdefault: %u)", "testnet/regtest only; ", !testnetChainParams->RequireStandard()), true, OptionsCategory::NODE_RELAY);
     gArgs.AddArg("-dustrelayfee=<amt>", strprintf("Fee rate (in %s/kB) used to defined dust, the value of an output such that it will cost more than its value in fees at this fee rate to spend it. (default: %s)", CURRENCY_UNIT, FormatMoney(DUST_RELAY_TX_FEE)), true, OptionsCategory::NODE_RELAY);
@@ -646,8 +646,8 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/Raptor3um/reaction>";
-    const std::string URL_WEBSITE = "<https://reaction.network>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/Raptor3um/dunduck>";
+    const std::string URL_WEBSITE = "<https://dunduck.network>";
 
     return CopyrightHolders(_("Copyright (C)"), 2014, COPYRIGHT_YEAR) + "\n" +
            "\n" +
@@ -752,7 +752,7 @@ void CleanupBlockRevFiles()
 void ThreadImport(std::vector<fs::path> vImportFiles)
 {
     const CChainParams& chainparams = Params();
-    RenameThread("reaction-loadblk");
+    RenameThread("dunduck-loadblk");
     ScheduleBatchPriority();
 
     {
@@ -909,7 +909,7 @@ void PeriodicStats()
 }
 
 /** Sanity checks
- *  Ensure that Reaction Core is running in a usable environment with all
+ *  Ensure that Dunduck Core is running in a usable environment with all
  *  necessary library support.
  */
 bool InitSanityCheck(void)
@@ -2235,7 +2235,7 @@ bool AppInitMain()
         }
     }
 
-    // ********************************************************* Step 10c: schedule Reaction-specific tasks
+    // ********************************************************* Step 10c: schedule Dunduck-specific tasks
 
     scheduler.scheduleEvery(std::bind(&CNetFulfilledRequestManager::DoMaintenance, std::ref(netfulfilledman)), 60 * 1000);
     scheduler.scheduleEvery(std::bind(&CSmartnodeSync::DoMaintenance, std::ref(smartnodeSync), std::ref(*g_connman)), 1 * 1000);

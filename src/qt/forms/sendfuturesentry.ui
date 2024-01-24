@@ -71,7 +71,7 @@
       <item>
        <widget class="QValidatedLineEdit" name="payTo">
         <property name="toolTip">
-         <string>The Reaction address to send the future payment to</string>
+         <string>The Dunduck address to send the future payment to</string>
         </property>
        </widget>
       </item>
@@ -155,17 +155,17 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>The Reaction address to fund the future transaction</string>
+         <string>The Dunduck address to fund the future transaction</string>
         </property>
         <property name="currentText">
-         <string>Select a Reaction address</string>
+         <string>Select a Dunduck address</string>
         </property>
         <property name="currentIndex">
          <number>0</number>
         </property>
         <item>
          <property name="text">
-          <string>Select a Reaction address</string>
+          <string>Select a Dunduck address</string>
          </property>
         </item>
        </widget>
@@ -292,7 +292,7 @@
     <item row="5" column="1">
      <widget class="QLabel" name="messageTextLabel">
       <property name="toolTip">
-       <string>A message that was attached to the reaction: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Reaction network.</string>
+       <string>A message that was attached to the dunduck: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Dunduck network.</string>
       </property>
       <property name="textFormat">
        <enum>Qt::PlainText</enum>
@@ -357,7 +357,7 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Reaction than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
+         <string>The fee will be deducted from the amount being sent. The recipient will receive a lower amount of Dunduck than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</string>
         </property>
         <property name="text">
          <string>S&amp;ubtract fee from amount</string>
@@ -1422,7 +1422,7 @@
   <tabstop>deleteButton_s</tabstop>
  </tabstops>
  <resources>
-  <include location="../reaction.qrc"/>
+  <include location="../dunduck.qrc"/>
  </resources>
  <connections/>
 </ui>

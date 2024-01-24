@@ -5,7 +5,7 @@
 #include <serialize.h>
 #include <streams.h>
 #include <hash.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <stdint.h>
 

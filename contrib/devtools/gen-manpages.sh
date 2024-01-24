@@ -7,10 +7,10 @@ BUILDDIR=${BUILDDIR:-$TOPDIR}
 BINDIR=${BINDIR:-$BUILDDIR/src}
 MANDIR=${MANDIR:-$TOPDIR/doc/man}
 
-BITCOIND=${BITCOIND:-$SRCDIR/reactiond}
-BITCOINCLI=${BITCOINCLI:-$SRCDIR/reaction-cli}
-BITCOINTX=${BITCOINTX:-$SRCDIR/reaction-tx}
-BITCOINQT=${BITCOINQT:-$SRCDIR/qt/reaction-qt}
+BITCOIND=${BITCOIND:-$SRCDIR/dunduckd}
+BITCOINCLI=${BITCOINCLI:-$SRCDIR/dunduck-cli}
+BITCOINTX=${BITCOINTX:-$SRCDIR/dunduck-tx}
+BITCOINQT=${BITCOINQT:-$SRCDIR/qt/dunduck-qt}
 
 [ ! -x $BITCOIND ] && echo "$BITCOIND not found or not executable." && exit 1
 
@@ -18,8 +18,8 @@ BITCOINQT=${BITCOINQT:-$SRCDIR/qt/reaction-qt}
 BTCVER=($($BITCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }'))
 
 # Create a footer file with copyright content.
-# This gets autodetected fine for reactiond if --version-string is not set,
-# but has different outcomes for reaction-qt and reaction-cli.
+# This gets autodetected fine for dunduckd if --version-string is not set,
+# but has different outcomes for dunduck-qt and dunduck-cli.
 echo "[COPYRIGHT]" > footer.h2m
 $BITCOIND --version | sed -n '1!p' >> footer.h2m
 

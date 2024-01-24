@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 The Reaction Core developers
+/* Copyright (c) 2020 The Dunduck Core developers
  * Distributed under the MIT software license, see the accompanying
  * file COPYING or http://www.opensource.org/licenses/mit-license.php.
  *
@@ -8,8 +8,8 @@
  *      Author: tri
  */
 
-#ifndef REACTION_SELECTION_H_
-#define REACTION_SELECTION_H_
+#ifndef DUNDUCK_SELECTION_H_
+#define DUNDUCK_SELECTION_H_
 
 #include <uint256.h>
 #include <string>
@@ -90,4 +90,4 @@ protected:
 
 };
 
-#endif /* REACTION_SELECTION_H_ */
+#endif /* DUNDUCK_SELECTION_H_ */

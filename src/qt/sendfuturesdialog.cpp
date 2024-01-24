@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2021 The Reaction developers
+// Copyright (c) 2020-2021 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -109,7 +109,7 @@ SendFuturesDialog::SendFuturesDialog(QWidget* parent) :
 //    connect(ui->checkBoxCoinControlChange, SIGNAL(stateChanged(int)), this, SLOT(coinControlChangeChecked(int)));
 //    connect(ui->lineEditCoinControlChange, SIGNAL(textEdited(const QString &)), this, SLOT(coinControlChangeEdited(const QString &)));
 
-    // Reaction specific
+    // Dunduck specific
     QSettings settings;
 /*    //TODO remove Darksend sometime after 0.14.1
     if (settings.contains("bUseDarkSend")) {
@@ -941,7 +941,7 @@ void SendFuturesDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Reaction address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Dunduck address"));
         }
         else // Valid address
         {

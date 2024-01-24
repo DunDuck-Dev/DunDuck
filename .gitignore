@@ -6,19 +6,19 @@ build-linux.sh
 build-osx.sh
 build-win.sh
 reset-files.bash
-reaction-build*/
+dunduck-build*/
 *.tar.gz
 
 *.exe
-src/reaction
-src/reactiond
-src/reaction-cli
-src/reaction-tx
-src/test/test_reaction
-src/test/test_reaction_fuzzy
-src/qt/test/test_reaction-qt
+src/dunduck
+src/dunduckd
+src/dunduck-cli
+src/dunduck-tx
+src/test/test_dunduck
+src/test/test_dunduck_fuzzy
+src/qt/test/test_dunduck-qt
 src/qt/res/css/colors/*
-src/bench/bench_reaction
+src/bench/bench_dunduck
 
 # autoreconf
 Makefile.in
@@ -41,8 +41,8 @@ config.log
 config.status
 configure
 libtool
-src/config/reaction-config.h
-src/config/reaction-config.h.in
+src/config/dunduck-config.h
+src/config/dunduck-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -89,14 +89,14 @@ libconftest.dylib*
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-reaction-qt
-reaction-Qt.app
+dunduck-qt
+dunduck-Qt.app
 background.tiff*
 !/depends/Makefile
 
 # Unit-tests
 Makefile.test
-reaction-qt_test
+dunduck-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -110,7 +110,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_reaction.coverage/
+test_dunduck.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -128,15 +128,15 @@ test/cache/*
 .autotools
 /doc/doxygen/
 
-libreactionconsensus.pc
+libdunduckconsensus.pc
 contrib/devtools/split-debug.sh
-src/qt/reaction-qt.bash
+src/qt/dunduck-qt.bash
 qa/pull-tester/tests-config.sh
 
 #development symlinks
-reaction-cli
-reactiond
-reaction-qt
+dunduck-cli
+dunduckd
+dunduck-qt
 make
 
 /docker/bin
@@ -152,6 +152,6 @@ dist/
 *.conf
 .settings/language.settings.xml
 
-/reaction.iml
+/dunduck.iml
 /testnet3_binary/
 /testnet4/

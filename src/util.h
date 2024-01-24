@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +13,7 @@
 #define BITCOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include <config/reaction-config.h>
+#include <config/dunduck-config.h>
 #endif
 
 #include <attributes.h>
@@ -43,14 +43,14 @@
 
 // Uncomment the following line to enable debugging messages
 // or enable on a per file basis prior to inclusion of util.h
-//#define ENABLE_REACTION_DEBUG
-#ifdef ENABLE_REACTION_DEBUG
+//#define ENABLE_DUNDUCK_DEBUG
+#ifdef ENABLE_DUNDUCK_DEBUG
 #define DBG( x ) x
 #else
 #define DBG( x )
 #endif
 
-//Reaction only features
+//Dunduck only features
 
 extern bool fSmartnodeMode;
 extern bool fDisableGovernance;
@@ -337,7 +337,7 @@ void RenameThreadPool(ctpl::thread_pool& tp, const char* baseName);
  */
 template <typename Callable> void TraceThread(const std::string name,  Callable func)
 {
-    std::string s = "reaction-" + name;
+    std::string s = "dunduck-" + name;
     RenameThread(s.c_str());
     try
     {

@@ -136,7 +136,7 @@ class WalletTest(BitcoinTestFramework):
         self.nodes[1].generate(100)
         self.sync_all(self.nodes[0:3])
 
-        # node0 should end up with 1000 REACTION in block rewards plus fees, but
+        # node0 should end up with 1000 DUNDUCK in block rewards plus fees, but
         # minus the 210 plus fees sent to node2
         assert_equal(self.nodes[0].getbalance(), 1000-210)
         assert_equal(self.nodes[2].getbalance(), 210)
@@ -189,7 +189,7 @@ class WalletTest(BitcoinTestFramework):
         node_2_bal = self.check_fee_amount(self.nodes[2].getbalance(), Decimal('900') - totalfee, fee_per_byte, count_bytes(self.nodes[2].getrawtransaction(txid)))
         assert_equal(self.nodes[0].getbalance(), Decimal('100'))
 
-        # Send 100 REACTION with subtract fee from amount
+        # Send 100 DUNDUCK with subtract fee from amount
         txid = self.nodes[2].sendtoaddress(address, 100, "", "", True)
         self.nodes[2].generate(1)
         self.sync_all(self.nodes[0:3])

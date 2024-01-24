@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2019 The Dash Core developers
-// Copyright (c) 2020-2021 The Reaction developers
+// Copyright (c) 2020-2021 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -41,7 +41,7 @@ SendFuturesEntry::SendFuturesEntry(QWidget* parent) :
 
     setButtonIcons();
 
-    // normal reaction address field
+    // normal dunduck address field
     GUIUtil::setupAddressWidget(ui->payTo, this, true);
 
     GUIUtil::setFont({ui->payToLabel,
@@ -368,7 +368,7 @@ void SendFuturesEntry::setupPayFrom()
     horzHeaders << "Address" << "Label" << BitcoinUnits::getAmountColumnTitle(model->getOptionsModel()->getDisplayUnit());
 
     QList<QStandardItem *> placeholder;
-    placeholder.append(new QStandardItem( "Select a Reaction address" ) );
+    placeholder.append(new QStandardItem( "Select a Dunduck address" ) );
     itemModel->appendRow(placeholder);
 
     #define SORT_ROLE Qt::UserRole + 1

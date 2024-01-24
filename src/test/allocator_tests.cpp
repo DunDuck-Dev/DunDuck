@@ -5,7 +5,7 @@
 #include <util.h>
 
 #include <support/allocators/secure.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <memory>
 

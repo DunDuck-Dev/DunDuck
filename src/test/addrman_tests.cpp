@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include <addrman.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 #include <string>
 #include <boost/test/unit_test.hpp>
 

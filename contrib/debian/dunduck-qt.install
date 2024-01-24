@@ -1,0 +1,6 @@
+usr/local/bin/dunduck-qt usr/bin
+share/pixmaps/dunduck32.xpm usr/share/pixmaps
+share/pixmaps/dunduck16.xpm usr/share/pixmaps
+share/pixmaps/dunduck128.png usr/share/pixmaps
+debian/dunduck-qt.desktop usr/share/applications
+debian/dunduck-qt.protocol usr/share/kde4/services/

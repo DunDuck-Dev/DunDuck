@@ -1,21 +1,21 @@
 Shared Libraries
 ================
 
-## reactionconsensus
+## dunduckconsensus
 
-The purpose of this library is to make the verification functionality that is critical to Reaction's consensus available to other applications, e.g. to language bindings.
+The purpose of this library is to make the verification functionality that is critical to Dunduck's consensus available to other applications, e.g. to language bindings.
 
 ### API
 
-The interface is defined in the C header `reactionconsensus.h` located in  `src/script/reactionconsensus.h`.
+The interface is defined in the C header `dunduckconsensus.h` located in  `src/script/dunduckconsensus.h`.
 
 #### Version
 
-`reactionconsensus_version` returns an `unsigned int` with the API version *(currently at an experimental `0`)*.
+`dunduckconsensus_version` returns an `unsigned int` with the API version *(currently at an experimental `0`)*.
 
 #### Script Validation
 
-`reactionconsensus_verify_script` returns an `int` with the status of the verification. It will be `1` if the input script correctly spends the previous output `scriptPubKey`.
+`dunduckconsensus_verify_script` returns an `int` with the status of the verification. It will be `1` if the input script correctly spends the previous output `scriptPubKey`.
 
 ##### Parameters
 - `const unsigned char *scriptPubKey` - The previous output script that encumbers spending.
@@ -24,21 +24,21 @@ The interface is defined in the C header `reactionconsensus.h` located in  `src/
 - `unsigned int txToLen` - The number of bytes for the `txTo`.
 - `unsigned int nIn` - The index of the input in `txTo` that spends the `scriptPubKey`.
 - `unsigned int flags` - The script validation flags *(see below)*.
-- `reactionconsensus_error* err` - Will have the error/success code for the operation *(see below)*.
+- `dunduckconsensus_error* err` - Will have the error/success code for the operation *(see below)*.
 
 ##### Script Flags
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_NONE`
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_P2SH` - Evaluate P2SH ([BIP16](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)) subscripts
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_DERSIG` - Enforce strict DER ([BIP66](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki)) compliance
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY` - Enforce NULLDUMMY ([BIP147](https://github.com/bitcoin/bips/blob/master/bip-0147.mediawiki))
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY` - Enable CHECKLOCKTIMEVERIFY ([BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki))
-- `reactionconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY` - Enable CHECKSEQUENCEVERIFY ([BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki))
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_NONE`
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_P2SH` - Evaluate P2SH ([BIP16](https://github.com/bitcoin/bips/blob/master/bip-0016.mediawiki)) subscripts
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_DERSIG` - Enforce strict DER ([BIP66](https://github.com/bitcoin/bips/blob/master/bip-0066.mediawiki)) compliance
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_NULLDUMMY` - Enforce NULLDUMMY ([BIP147](https://github.com/bitcoin/bips/blob/master/bip-0147.mediawiki))
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_CHECKLOCKTIMEVERIFY` - Enable CHECKLOCKTIMEVERIFY ([BIP65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki))
+- `dunduckconsensus_SCRIPT_FLAGS_VERIFY_CHECKSEQUENCEVERIFY` - Enable CHECKSEQUENCEVERIFY ([BIP112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki))
 
 ##### Errors
-- `reactionconsensus_ERR_OK` - No errors with input parameters *(see the return value of `reactionconsensus_verify_script` for the verification status)*
-- `reactionconsensus_ERR_TX_INDEX` - An invalid index for `txTo`
-- `reactionconsensus_ERR_TX_SIZE_MISMATCH` - `txToLen` did not match with the size of `txTo`
-- `reactionconsensus_ERR_DESERIALIZE` - An error deserializing `txTo`
+- `dunduckconsensus_ERR_OK` - No errors with input parameters *(see the return value of `dunduckconsensus_verify_script` for the verification status)*
+- `dunduckconsensus_ERR_TX_INDEX` - An invalid index for `txTo`
+- `dunduckconsensus_ERR_TX_SIZE_MISMATCH` - `txToLen` did not match with the size of `txTo`
+- `dunduckconsensus_ERR_DESERIALIZE` - An error deserializing `txTo`
 
 ### Example Implementations
 - [NBitcoin](https://github.com/NicolasDorier/NBitcoin/blob/master/NBitcoin/Script.cs#L814) (.NET Bindings)

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Dunduck Core
+Comment=Dunduck P2P Cryptocurrency
+Comment[de]=Verbinde mit dem Dunduck peer-to-peer Netzwerk
+Comment[fr]=Dunduck, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Dunduck, eşten eşe kriptografik sanal para birimi
+Exec=dunduck-qt %u
+Terminal=false
+Type=Application
+Icon=dunduck128
+MimeType=x-scheme-handler/dunduck;
+Categories=Office;Finance;

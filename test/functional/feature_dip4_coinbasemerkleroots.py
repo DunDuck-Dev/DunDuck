@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2020 The Dash Core developers
-# Copyright (c) 2020-2022 The Reaction developers
+# Copyright (c) 2020-2022 The Dunduck developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 from test_framework.mininode import *
@@ -35,9 +35,9 @@ class TestP2PConn(P2PInterface):
         return self.last_mnlistdiff
 
 
-class LLMQCoinbaseCommitmentsTest(ReactionTestFramework):
+class LLMQCoinbaseCommitmentsTest(DunduckTestFramework):
     def set_test_params(self):
-        self.set_reaction_test_params(4, 3, fast_dip3_enforcement=True)
+        self.set_dunduck_test_params(4, 3, fast_dip3_enforcement=True)
 
     def run_test(self):
         self.test_node = self.nodes[0].add_p2p_connection(TestP2PConn())
@@ -53,7 +53,7 @@ class LLMQCoinbaseCommitmentsTest(ReactionTestFramework):
         mnList = self.test_getmnlistdiff(null_hash, self.nodes[0].getbestblockhash(), {}, [], expectedUpdated)
         expectedUpdated2 = expectedUpdated + []
 
-        # Register one more MN, but don't start it (that would fail as ReactionTestFramework doesn't support this atm)
+        # Register one more MN, but don't start it (that would fail as DunduckTestFramework doesn't support this atm)
         baseBlockHash = self.nodes[0].getbestblockhash()
         self.prepare_smartnode(self.mn_count)
         new_mn = self.mninfo[self.mn_count]

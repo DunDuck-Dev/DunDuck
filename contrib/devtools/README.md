@@ -17,7 +17,7 @@ git diff -U0 HEAD~1.. | ./contrib/devtools/clang-format-diff.py -p1 -i -v
 copyright\_header.py
 ====================
 
-Provides utilities for managing copyright headers of `The Reaction Core
+Provides utilities for managing copyright headers of `The Dunduck Core
 developers` in repository source files. It has three subcommands:
 
 ```
@@ -36,31 +36,31 @@ Specifying `verbose` will list the full filenames of files of each category.
 
 copyright\_header.py update \<base\_directory\> [verbose]
 ---------------------------------------------------------
-Updates all the copyright headers of `The Reaction developers` which were
+Updates all the copyright headers of `The Dunduck developers` which were
 changed in a year more recent than is listed. For example:
 ```
-// Copyright (c) <firstYear>-<lastYear> The Reaction developers
+// Copyright (c) <firstYear>-<lastYear> The Dunduck developers
 ```
 will be updated to:
 ```
-// Copyright (c) <firstYear>-<lastModifiedYear> The Reaction developers
+// Copyright (c) <firstYear>-<lastModifiedYear> The Dunduck developers
 ```
 where `<lastModifiedYear>` is obtained from the `git log` history.
 
 This subcommand also handles copyright headers that have only a single year. In
 those cases:
 ```
-// Copyright (c) <year> The Reaction developers
+// Copyright (c) <year> The Dunduck developers
 ```
 will be updated to:
 ```
-// Copyright (c) <year>-<lastModifiedYear> The Reaction developers
+// Copyright (c) <year>-<lastModifiedYear> The Dunduck developers
 ```
 where the update is appropriate.
 
 copyright\_header.py insert \<file\>
 ------------------------------------
-Inserts a copyright header for `The Reaction developers` at the top of the
+Inserts a copyright header for `The Dunduck developers` at the top of the
 file in either Python or C++ style as determined by the file extension. If the
 file is a Python file and it has  `#!` starting the first line, the header is
 inserted in the line below it.
@@ -70,7 +70,7 @@ The copyright dates will be set to be `<year_introduced>-<current_year>` where
 `<year_introduced>` is equal to `<current_year>`, it will be set as a single
 year rather than two hyphenated years.
 
-If the file already has a copyright for `The Reaction developers`, the
+If the file already has a copyright for `The Dunduck developers`, the
 script will exit.
 
 gen-manpages.sh
@@ -97,7 +97,7 @@ For example:
   ./github-merge.py 3077
 
 (in any git repository) will help you merge pull request #3077 for the
-reaction/reaction repository.
+dunduck/dunduck repository.
 
 What it does:
 * Fetch master and the pull request.
@@ -117,14 +117,14 @@ Setup
 ---------
 Configuring the github-merge tool for the bitcoin repository is done in the following way:
 
-    git config githubmerge.repository reaction/reaction
+    git config githubmerge.repository dunduck/dunduck
     git config githubmerge.testcmd "make -j4 check" (adapt to whatever you want to use for testing)
     git config --global user.signingkey mykeyid (if you want to GPG sign)
 
 optimize-pngs.py
 ================
 
-A script to optimize png files in the reaction
+A script to optimize png files in the dunduck
 repository (requires pngcrush).
 
 security-check.py and test-security-check.py
@@ -147,10 +147,10 @@ If only supported symbols are used the return value will be 0 and the output wil
 
 If there are 'unsupported' symbols, the return value will be 1 a list like this will be printed:
 
-    .../64/test_reaction: symbol memcpy from unsupported version GLIBC_2.14
-    .../64/test_reaction: symbol __fdelt_chk from unsupported version GLIBC_2.15
-    .../64/test_reaction: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
-    .../64/test_reaction: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
+    .../64/test_dunduck: symbol memcpy from unsupported version GLIBC_2.14
+    .../64/test_dunduck: symbol __fdelt_chk from unsupported version GLIBC_2.15
+    .../64/test_dunduck: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
+    .../64/test_dunduck: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
 
 update-translations.py
 ======================

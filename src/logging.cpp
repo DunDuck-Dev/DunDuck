@@ -150,7 +150,7 @@ bool GetLogCategory(uint64_t *f, const std::string *str)
             *f = BCLog::ALL;
             return true;
         }
-        if (*str == "reaction") {
+        if (*str == "dunduck") {
             *f = BCLog::CHAINLOCKS
                  | BCLog::GOBJECT
                  | BCLog::INSTANTSEND

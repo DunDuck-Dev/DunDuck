@@ -1,5 +1,5 @@
 ---
-name: "reaction-dmg-signer"
+name: "dunduck-dmg-signer"
 suites:
 - "bionic"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/reaction/reaction-detached-sigs.git"
+- "url": "https://github.com/dunduck/dunduck-detached-sigs.git"
   "dir": "signature"
 files:
-- "reaction-osx-unsigned.tar.gz"
+- "dunduck-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,8 +27,8 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=reaction-osx-unsigned.tar.gz
-  SIGNED=reaction-osx-signed.dmg
+  UNSIGNED=dunduck-osx-unsigned.tar.gz
+  SIGNED=dunduck-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"

@@ -1,18 +1,18 @@
-Reaction Core v1.1.15
+Dunduck Core v1.1.15
 ===========================
 
-What is Reaction?
+What is Dunduck?
 
-Reaction is a decentralized financial technology accessible to everyone that is fast, reliable and
-secure with negligible transaction costs. Reaction has its own blockchain, which is a fork of
+Dunduck is a decentralized financial technology accessible to everyone that is fast, reliable and
+secure with negligible transaction costs. Dunduck has its own blockchain, which is a fork of
 Raptoreum codebase with ASIC resistant POW algorithm and consensus ensuring Smartnodes
-which make the network immune to 51% attacks. Reaction coins can be mined on both CPU
-and GPU. Reaction cares about privacy and has an integrated CoinJoin mechanism that allows
+which make the network immune to 51% attacks. Dunduck coins can be mined on both CPU
+and GPU. Dunduck cares about privacy and has an integrated CoinJoin mechanism that allows
 to hide the balance directly in the wallet.
 
-Reaction (RTC) is an innovative cryptocurrency designed to capture the diverse reactions of the world to various events,
-while simultaneously serving as a powerful example of how a chain reaction can unfold in the cryptocurrency market. 
-RTC not only stands for "Reaction," but also for "Revolutionizing Token Currency," 
+Dunduck (DUN) is an innovative cryptocurrency designed to capture the diverse dunducks of the world to various events,
+while simultaneously serving as a powerful example of how a chain dunduck can unfold in the cryptocurrency market. 
+DUN not only stands for "Dunduck," but also for "Revolutionizing Token Currency," 
 as it represents a revolutionary approach to how a simple idea can evolve into a significant 
 success within the cryptocurrency universe.
 
@@ -21,36 +21,36 @@ success within the cryptocurrency universe.
 The Technology
 -------
 
-Reaction (RTC) is built on state-of-the-art blockchain technology, allowing real-time tracking of events in the world
+Dunduck (DUN) is built on state-of-the-art blockchain technology, allowing real-time tracking of events in the world
 and securely anchoring this information within the blockchain. Smart contracts, 
-referred to as "Reaction Nodes," automatically and transparently capture how people react to different events,
+referred to as "Dunduck Nodes," automatically and transparently capture how people react to different events,
 whether through social media, news reports, or market indicators. These collected data points are utilized to 
-adjust the value of RTC, reflecting an authentic response to the events.
+adjust the value of DUN, reflecting an authentic response to the events.
 
 
 The Vision
 -------
 
-Reaction (RTC) aspires to be more than just a cryptocurrency; it aims to be a vibrant platform for the exchange
-of thoughts, ideas, and reactions to global events. By acting as a conduit for the world's reactions, 
-RTC establishes a novel connection between the digital and real worlds. Reaction's vision is to unite a broad 
+Dunduck (DUN) aspires to be more than just a cryptocurrency; it aims to be a vibrant platform for the exchange
+of thoughts, ideas, and dunducks to global events. By acting as a conduit for the world's dunducks, 
+DUN establishes a novel connection between the digital and real worlds. Dunduck's vision is to unite a broad 
 community of individuals actively shaping and developing the cryptocurrency, thereby 
-initiating a sustainable and dynamic chain reaction of progress.
+initiating a sustainable and dynamic chain dunduck of progress.
 
-The roadmap to our goals can be found at our official webpage https://reaction.network/
+The roadmap to our goals can be found at our official webpage https://dunduck.network/
 
 License
 -------
 
-Reaction Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Dunduck Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is meant to be stable. Development is done in separate branches.
-[Tags](https://github.com/Reaction/Reaction/tags) are created to indicate new official,
-stable release versions of Reaction Core.
+[Tags](https://github.com/Dunduck/Dunduck/tags) are created to indicate new official,
+stable release versions of Dunduck Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 

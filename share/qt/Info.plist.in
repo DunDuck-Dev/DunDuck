@@ -26,16 +26,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>Reaction-Qt</string>
+  <string>Dunduck-Qt</string>
 
   <key>CFBundleName</key>
-  <string>Reaction-Qt</string>
+  <string>Dunduck-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.reaction.Reaction-Qt</string>
+  <string>org.dunduck.Dunduck-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -43,10 +43,10 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.reaction.ReactionPayment</string>
+      <string>org.dunduck.DunduckPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>reaction</string>
+        <string>dunduck</string>
       </array>
     </dict>
   </array>
@@ -55,9 +55,9 @@
   <array>
     <dict>
       <key>UTTypeIdentifier</key>
-      <string>org.reaction.paymentrequest</string>
+      <string>org.dunduck.paymentrequest</string>
       <key>UTTypeDescription</key>
-      <string>Reaction payment request</string>
+      <string>Dunduck payment request</string>
       <key>UTTypeConformsTo</key>
       <array>
         <string>public.data</string>
@@ -65,10 +65,10 @@
       <key>UTTypeTagSpecification</key>
       <dict>
         <key>public.mime-type</key>
-        <string>application/x-reaction-payment-request</string>
+        <string>application/x-dunduck-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>reactionmentrequest</string>
+          <string>dunduckmentrequest</string>
         </array>
       </dict>
     </dict>
@@ -81,7 +81,7 @@
       <string>Editor</string>
       <key>LSItemContentTypes</key>
       <array>
-        <string>org.reaction.paymentrequest</string>
+        <string>org.dunduck.paymentrequest</string>
       </array>
       <key>LSHandlerRank</key>
       <string>Owner</string>

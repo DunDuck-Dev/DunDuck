@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2021 The Reaction developers
+// Copyright (c) 2020-2021 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,7 +20,7 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(RTC);
+    unitlist.append(DUN);
     unitlist.append(mRTC);
     unitlist.append(uRTC);
     unitlist.append(ruffs);
@@ -31,7 +31,7 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case RTC:
+    case DUN:
     case mRTC:
     case uRTC:
     case ruffs:
@@ -47,7 +47,7 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case RTC: return QString("RTC");
+            case DUN: return QString("DUN");
             case mRTC: return QString("mRTC");
             case uRTC: return QString::fromUtf8("μRTC");
             case ruffs: return QString("ruffs");
@@ -58,7 +58,7 @@ QString BitcoinUnits::name(int unit)
     {
         switch(unit)
         {
-            case RTC: return QString("tRTC");
+            case DUN: return QString("tRTC");
             case mRTC: return QString("mtRTC");
             case uRTC: return QString::fromUtf8("μtRTC");
             case ruffs: return QString("truffs");
@@ -73,10 +73,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case RTC: return QString("Reaction");
-            case mRTC: return QString("Milli-Reaction (1 / 1" THIN_SP_UTF8 "000)");
-            case uRTC: return QString("Micro-Reaction (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case ruffs: return QString("Ten Nano-Reaction (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case DUN: return QString("Dunduck");
+            case mRTC: return QString("Milli-Dunduck (1 / 1" THIN_SP_UTF8 "000)");
+            case uRTC: return QString("Micro-Dunduck (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case ruffs: return QString("Ten Nano-Dunduck (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -84,10 +84,10 @@ QString BitcoinUnits::description(int unit)
     {
         switch(unit)
         {
-            case RTC: return QString("TestReactions");
-            case mRTC: return QString("Milli-TestReaction (1 / 1" THIN_SP_UTF8 "000)");
-            case uRTC: return QString("Micro-TestReaction (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-            case ruffs: return QString("Ten Nano-TestReaction (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case DUN: return QString("TestDunducks");
+            case mRTC: return QString("Milli-TestDunduck (1 / 1" THIN_SP_UTF8 "000)");
+            case uRTC: return QString("Micro-TestDunduck (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+            case ruffs: return QString("Ten Nano-TestDunduck (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
             default: return QString("???");
         }
     }
@@ -97,7 +97,7 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case RTC:  return 100000000;
+    case DUN:  return 100000000;
     case mRTC: return 100000;
     case uRTC: return 100;
     case ruffs: return 1;
@@ -109,7 +109,7 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case RTC: return 8;
+    case DUN: return 8;
     case mRTC: return 5;
     case uRTC: return 2;
     case ruffs: return 0;

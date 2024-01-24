@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 The Reaction developer
+ * Copyright (c) 2020 The Dunduck developer
  * Distributed under the MIT software license, see the accompanying
  * file COPYING or http://www.opensource.org/licenses/mit-license.php.
  * 
@@ -18,7 +18,7 @@
 #include <limits.h>
 using namespace std;
 
-static const string DEFAULT_FOUNDER_ADDRESS = "Riop19LfK8sVzuzPLNPUq6vSFTAoc8Yxen";
+static const string DEFAULT_FOUNDER_ADDRESS = "dYkA3sd3hUK5DGT5Hsiet6JkeRpEZnfAK8";
 struct FounderRewardStructure {
 	int blockHeight;
 	int rewardPercentage;

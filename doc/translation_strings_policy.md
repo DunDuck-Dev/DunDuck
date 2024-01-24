@@ -1,7 +1,7 @@
 Translation Strings Policy
 ===========================
 
-This document provides guidelines for internationalization of the Reaction Core software.
+This document provides guidelines for internationalization of the Dunduck Core software.
 
 How to translate?
 ------------------
@@ -75,10 +75,10 @@ In Qt code use tr's third argument for optional plurality. For example:
 This adds `<numerusform>`s to the respective `.ts` file, which can be translated separately depending on the language. In English, this is simply:
 
     <message numerus="yes">
-        <source>%n active connection(s) to Reaction network</source>
+        <source>%n active connection(s) to Dunduck network</source>
         <translation>
-            <numerusform>%n active connection to Reaction network</numerusform>
-            <numerusform>%n active connections to Reaction network</numerusform>
+            <numerusform>%n active connection to Dunduck network</numerusform>
+            <numerusform>%n active connections to Dunduck network</numerusform>
         </translation>
     </message>
 
@@ -96,4 +96,4 @@ The second example reduces the number of pluralized words that translators have 
 
 During a string freeze (often before a major release), no translation strings are to be added, modified or removed.
 
-This can be checked by executing `make translate` in the `src` directory, then verifying that `reaction_en.ts` remains unchanged.
+This can be checked by executing `make translate` in the `src` directory, then verifying that `dunduck_en.ts` remains unchanged.

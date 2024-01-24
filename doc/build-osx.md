@@ -38,23 +38,23 @@ Next, follow the instructions in [build-generic](build-generic.md)
 Running
 -------
 
-Reaction Core is now available at `./src/reactiond`
+Dunduck Core is now available at `./src/dunduckd`
 
 Before running, it's recommended you create an RPC configuration file.
 
-    echo -e "rpcuser=reactionrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Reaction/reaction.conf"
+    echo -e "rpcuser=dunduckrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Dunduck/dunduck.conf"
 
-    chmod 600 "/Users/${USER}/Library/Application Support/Reaction/reaction.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/Dunduck/dunduck.conf"
 
-The first time you run reactiond, it will start downloading the blockchain. This process could take several hours.
+The first time you run dunduckd, it will start downloading the blockchain. This process could take several hours.
 
 You can monitor the download process by looking at the debug.log file:
 
-    tail -f $HOME/Library/Application\ Support/Reaction/debug.log
+    tail -f $HOME/Library/Application\ Support/Dunduck/debug.log
 
 Other commands:
 -------
 
-    ./src/reactiond -daemon # Starts the reaction daemon.
-    ./src/reaction-cli --help # Outputs a list of command-line options.
-    ./src/reaction-cli help # Outputs a list of RPC commands when the daemon is running.
+    ./src/dunduckd -daemon # Starts the dunduck daemon.
+    ./src/dunduck-cli --help # Outputs a list of command-line options.
+    ./src/dunduck-cli help # Outputs a list of RPC commands when the daemon is running.

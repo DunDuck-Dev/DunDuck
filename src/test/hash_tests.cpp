@@ -4,7 +4,7 @@
 
 #include <hash.h>
 #include <utilstrencodings.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <vector>
 

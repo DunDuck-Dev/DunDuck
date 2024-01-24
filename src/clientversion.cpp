@@ -9,10 +9,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both reactiond and reaction-qt, to make it harder for attackers to
+ * for both dunduckd and dunduck-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Reaction Core");
+const std::string CLIENT_NAME("Dunduck Core");
 
 /**
  * Client version number

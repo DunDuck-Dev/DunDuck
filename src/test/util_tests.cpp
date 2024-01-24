@@ -9,7 +9,7 @@
 #include <sync.h>
 #include <utilstrencodings.h>
 #include <utilmoneystr.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <stdint.h>
 #include <vector>

@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: reactiond.service
-Upstart: reactiond.conf
-OpenRC:  reactiond.openrc
-         reactiond.openrcconf
-CentOS:  reactiond.init
-OS X:    org.reaction.reactiond.plist
+SystemD: dunduckd.service
+Upstart: dunduckd.conf
+OpenRC:  dunduckd.openrc
+         dunduckd.openrcconf
+CentOS:  dunduckd.init
+OS X:    org.dunduck.dunduckd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

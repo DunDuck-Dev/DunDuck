@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2021 The Reaction developers
+// Copyright (c) 2020-2021 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -212,7 +212,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered reaction address / amount:
+        {   // User-entered dunduck address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -299,7 +299,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 vOrderForm.emplace_back("PaymentRequest", std::move(value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal reaction:URI (reaction:XyZ...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal dunduck:URI (dunduck:XyZ...?message=example)
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
         }
 
@@ -405,7 +405,7 @@ WalletModel::SendFuturesReturn WalletModel::prepareFuturesTransaction(WalletMode
             total += subtotal;
         }
         else
-        {   // User-entered reaction address / amount:
+        {   // User-entered dunduck address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -491,7 +491,7 @@ WalletModel::SendFuturesReturn WalletModel::sendFutures(WalletModelFuturesTransa
                 rcp.paymentRequest.SerializeToString(&value);
                 vOrderForm.emplace_back("PaymentRequest", std::move(value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal reaction:URI (reaction:XyZ...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal dunduck:URI (dunduck:XyZ...?message=example)
             {
                 vOrderForm.emplace_back("Message", rcp.message.toStdString());
             }

@@ -1,10 +1,10 @@
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include <config/reaction-config.h>
+#include <config/dunduck-config.h>
 #endif // HAVE_CONFIG_H
 
 #include <stacktraces.h>

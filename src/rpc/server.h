@@ -136,7 +136,7 @@ public:
 };
 
 /**
- * Reaction RPC command dispatcher.
+ * Dunduck RPC command dispatcher.
  */
 class CRPCTable
 {

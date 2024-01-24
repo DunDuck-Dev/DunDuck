@@ -48,7 +48,7 @@ class SpinLock;          // To allow use of SchedulingGuard.
 // protect resources (e.g. low-level SpinLocks or Domain code) that cooperative
 // scheduling depends on.
 //
-// Domain implementations capable of rescheduling in reaction to involuntary
+// Domain implementations capable of rescheduling in dunduck to involuntary
 // kernel thread actions (e.g blocking due to a pagefault or syscall) must
 // guarantee that an annotated thread is not allowed to (cooperatively)
 // reschedule until the annotated region is complete.

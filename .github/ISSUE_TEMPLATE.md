@@ -1,8 +1,8 @@
 <!--- Remove sections that do not apply -->
 
-This issue tracker is only for technical issues related to Reaction Core.
+This issue tracker is only for technical issues related to Dunduck Core.
 
-General Reaction questions and/or support requests and are best directed to the [Reaction Discord](https://discord.gg/UTpJgqPNJd).
+General Dunduck questions and/or support requests and are best directed to the [Dunduck Discord](https://discord.gg/UTpJgqPNJd).
 
 To report critical security issues, DM the Core or Developer Teams instead of creating Github issues.
 
@@ -23,7 +23,7 @@ Tell us what happens instead
 ### Screenshots.
 If the issue is related to the GUI, screenshots can be added to this issue via drag & drop.
 
-### What version of Reaction Core are you using?
+### What version of Dunduck Core are you using?
 List the version number/commit ID, and if it is an official binary, self compiled or a distribution package such as PPA.
 
 ### Machine specs:

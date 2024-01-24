@@ -1,39 +1,39 @@
-Reaction Core
+Dunduck Core
 ==========
 
-This is the official reference wallet for Reaction digital currency and comprises the backbone of the Reaction peer-to-peer network. You can [download Reaction Core](https://www.reaction.network/downloads/) or [build it yourself](#building) using the guides below.
+This is the official reference wallet for Dunduck digital currency and comprises the backbone of the Dunduck peer-to-peer network. You can [download Dunduck Core](https://www.dunduck.network/downloads/) or [build it yourself](#building) using the guides below.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Reaction on your native platform.
+The following are some helpful notes on how to run Dunduck on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/reaction-qt` (GUI) or
-- `bin/reactiond` (headless)
+- `bin/dunduck-qt` (GUI) or
+- `bin/dunduckd` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run reaction-qt.exe.
+Unpack the files into a directory, and then run dunduck-qt.exe.
 
 ### OS X
 
-Drag Reaction-Qt to your applications folder, and then run Reaction-Qt.
+Drag Dunduck-Qt to your applications folder, and then run Dunduck-Qt.
 
 ### Need Help?
 
-* See the [Reaction documentation](https://docs.reaction.network)
+* See the [Dunduck documentation](https://docs.dunduck.network)
 for help and more information.
-* See the [Reaction Developer Documentation](https://reaction-docs.github.io/) 
+* See the [Dunduck Developer Documentation](https://dunduck-docs.github.io/) 
 for technical specifications and implementation details.
-* Ask for help on [Reaction Nation Discord](http://reactionchat.org)
-* Ask for help on the [Reaction Forum](https://reaction.network/forum)
+* Ask for help on [Dunduck Nation Discord](http://dunduckchat.org)
+* Ask for help on the [Dunduck Forum](https://dunduck.network/forum)
 
 Building
 ---------------------
-The following are developer notes on how to build Reaction Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Dunduck Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OS X Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -43,7 +43,7 @@ The following are developer notes on how to build Reaction Core on your native p
 
 Development
 ---------------------
-The Reaction Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Dunduck Core repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Release Notes](release-notes.md)
@@ -59,8 +59,8 @@ The Reaction Core repo's [root README](/README.md) contains relevant information
 - [Benchmarking](benchmarking.md)
 
 ### Resources
-* Discuss on the [Reaction Forum](https://reaction.network/forum), in the Development & Technical Discussion board.
-* Discuss on [Reaction Nation Discord](http://reactionchat.org)
+* Discuss on the [Dunduck Forum](https://dunduck.network/forum), in the Development & Technical Discussion board.
+* Discuss on [Dunduck Nation Discord](http://dunduckchat.org)
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

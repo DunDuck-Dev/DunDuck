@@ -62,7 +62,7 @@ enum LLMQType : uint8_t
 };
 
 // Configures a LLMQ and its DKG
-// See https://github.com/reaction/dips/blob/master/dip-0006.md for more details
+// See https://github.com/dunduck/dips/blob/master/dip-0006.md for more details
 struct LLMQParams {
     LLMQType type;
 

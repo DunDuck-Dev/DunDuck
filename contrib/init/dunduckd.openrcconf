@@ -1,0 +1,33 @@
+# /etc/conf.d/dunduckd: config file for /etc/init.d/dunduckd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/dunduck/dunduck.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/dunduckd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/dunduckd.pid"
+
+# Where to write dunduckd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/dunduckd"
+
+# User and group to own dunduckd process
+#BITCOIND_USER="dunduck"
+#BITCOIND_GROUP="dunduck"
+
+# Path to dunduckd executable
+#BITCOIND_BIN="/usr/bin/dunduckd"
+
+# Nice value to run dunduckd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#BITCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for dunduckd to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+BITCOIND_SIGTERM_TIMEOUT=60

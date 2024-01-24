@@ -63,6 +63,9 @@ private:
 
 private Q_SLOTS:
     void on_receiveButton_clicked();
+    #ifdef _WIN32
+    void performActions();
+    #endif
     void on_showRequestButton_clicked();
     void on_removeRequestButton_clicked();
     void on_recentRequestsView_doubleClicked(const QModelIndex &index);
@@ -76,3 +79,4 @@ private Q_SLOTS:
 };
 
 #endif // BITCOIN_QT_RECEIVECOINSDIALOG_H
+

@@ -9,7 +9,7 @@ rm -f doc/man/Makefile
 rm -f doc/man/Makefile.in
 
 rm -f src/config/stamp-h1
-rm -f src/config/reaction-config.h
+rm -f src/config/dunduck-config.h
 rm -f src/obj/build.h
 rm -f src/leveldb/build_config.mk
 
@@ -17,7 +17,7 @@ rm -f src/test/buildenv.py
 rm -f src/test/data/*.json.h
 rm -f src/test/data/*.raw.h
 
-rm -rf test_bitcoin.coverage/ reaction-gtest.coverage/ total.coverage/
+rm -rf test_bitcoin.coverage/ dunduck-gtest.coverage/ total.coverage/
 
 rm -rf cache
 rm -rf target
@@ -69,19 +69,19 @@ clean_dirs .libs
 clean_dirs __pycache__
 
 clean_exe src/bench/bench_bitcoin
-clean_exe src/reaction-cli
-clean_exe src/reactiond
-clean_exe src/reaction-gtest
-clean_exe src/reaction-tx
-clean_exe src/test/test_reaction
-clean_exe src/test/test_reaction_fuzzy
+clean_exe src/dunduck-cli
+clean_exe src/dunduckd
+clean_exe src/dunduck-gtest
+clean_exe src/dunduck-tx
+clean_exe src/test/test_dunduck
+clean_exe src/test/test_dunduck_fuzzy
 
 clean_exe src/leveldb/db_bench
 clean_exe src/leveldb/leveldbutil
 rm -f src/leveldb/*_test src/leveldb/*_test.exe
 rm -f src/leveldb/*.so src/leveldb/*.so.*
 
-clean_dep . src/config/reaction-config.h.in
+clean_dep . src/config/dunduck-config.h.in
 
 clean_dep src/secp256k1 src/libsecp256k1-config.h.in
 rm -f src/secp256k1/src/ecmult_static_context.h

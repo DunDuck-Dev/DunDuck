@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
 // Copyright (c) 2014-2021 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     explicit TxViewDelegate(QObject* parent = nullptr) :
-        QAbstractItemDelegate(), unit(BitcoinUnits::RTC)
+        QAbstractItemDelegate(), unit(BitcoinUnits::DUN)
     {
 
     }
@@ -256,7 +256,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
     this->walletModel = model;
     if(model && model->getOptionsModel())
     {
-        // update the display unit, to not use the default ("RTC")
+        // update the display unit, to not use the default ("DUN")
         updateDisplayUnit();
         // Keep up to date with wallet
         interfaces::Wallet& wallet = model->wallet();

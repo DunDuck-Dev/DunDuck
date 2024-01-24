@@ -1,10 +1,10 @@
 // Copyright (c) 2018-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef REACTION_BATCHEDLOGGER_H
-#define REACTION_BATCHEDLOGGER_H
+#ifndef DUNDUCK_BATCHEDLOGGER_H
+#define DUNDUCK_BATCHEDLOGGER_H
 
 #include "tinyformat.h"
 
@@ -30,4 +30,4 @@ public:
     void Flush();
 };
 
-#endif//REACTION_BATCHEDLOGGER_H
+#endif//DUNDUCK_BATCHEDLOGGER_H

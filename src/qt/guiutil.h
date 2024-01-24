@@ -40,7 +40,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Reaction Qt UI.
+/** Utility functions used by the Dunduck Qt UI.
  */
 namespace GUIUtil
 {
@@ -115,7 +115,7 @@ namespace GUIUtil
     // Setup appearance settings if not done yet
     void setupAppearance(QWidget* parent, OptionsModel* model);
 
-    // Parse "reaction:" URI into recipient object, return true on successful parsing
+    // Parse "dunduck:" URI into recipient object, return true on successful parsing
     bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseBitcoinURI(QString uri, SendCoinsRecipient *out);
     bool validateBitcoinURI(const QString& uri);
@@ -188,7 +188,7 @@ namespace GUIUtil
     // Open debug.log
     void openDebugLogfile();
 
-    // Open reaction.conf
+    // Open dunduck.conf
     void openConfigfile();
 
     // Browse backup folder
@@ -320,7 +320,7 @@ namespace GUIUtil
     /** get font size with GUIUtil::fontScale applied */
     double getScaledFontSize(int nSize);
 
-    /** Load reaction specific appliciation fonts */
+    /** Load dunduck specific appliciation fonts */
     bool loadFonts();
     /** Check if the fonts have been loaded successfully */
     bool fontsLoaded();
@@ -364,8 +364,8 @@ namespace GUIUtil
     /** Return the name of the currently active theme.*/
     QString getActiveTheme();
 
-    /** Check if a reaction specific theme is activated (light/dark).*/
-    bool reactionThemeActive();
+    /** Check if a dunduck specific theme is activated (light/dark).*/
+    bool dunduckThemeActive();
 
     /** Load the theme and update all UI elements according to the appearance settings. */
     void loadTheme(bool fForce = false);

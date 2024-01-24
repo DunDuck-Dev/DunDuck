@@ -1,7 +1,7 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin Core developers
 // Copyright (c) 2014-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -86,7 +86,7 @@ static CBlock CreateDevNetGenesisBlock(const uint256 &prevBlockHash, const std::
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 09/Aug/2023 Reaction Genesis Block";
+    const char* pszTimestamp = "The Times 09/Aug/2023 Dunduck Genesis Block";
     const CScript genesisOutputScript = CScript() << ParseHex("043e034e26a5395a9e670dfd98656078496a1735885974f0ebaea4bf2abcc3ac40d56512fa9e3efcad14aef668aa048e7c567d6ff24a66e2ba2ec33d5a6f279e3c") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -500,8 +500,8 @@ public:
         consensus.DIP0008Enabled = true;
         // consensus.DIP0003EnforcementHeight = 1047200;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Reaction: 1 day
-        consensus.nPowTargetSpacing = 2 * 60; // Reaction: 2 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dunduck: 1 day
+        consensus.nPowTargetSpacing = 2 * 60; // Dunduck: 2 minutes
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -534,44 +534,34 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0]  = 0xcc;
-        pchMessageStart[1]  = 0xbe;
-        pchMessageStart[2]  = 0xd7;
-        pchMessageStart[3]  = 0x8b;
-        nDefaultPort = 8632;
+        pchMessageStart[0]  = 0xbe;
+        pchMessageStart[1]  = 0xce;
+        pchMessageStart[2]  = 0xd4;
+        pchMessageStart[3]  = 0x5b;
+        nDefaultPort = 3212;
         nPruneAfterHeight = 100000;
-        //FindMainNetGenesisBlock(1691601216, 0x20001cff, "main");
-        genesis = CreateGenesisBlock(1691601216, 391, 0x20001cff, 4, 5000 * COIN); // 391
+        //FindMainNetGenesisBlock(1701624837, 0x20001cff, "main");
+        genesis = CreateGenesisBlock(1701624837, 383, 0x20001cff, 4, 5000 * COIN); // 391
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("f3e7df1c335fb2866ca7ddbc30adecd9bc5b98e980182ac95aafc23799cbc79b"));
-        assert(genesis.hashMerkleRoot == uint256S("bc0f74299442fbf40b87f7f371c71dbd528d18f7d4a8351b4be53e3544c426da"));
+        assert(consensus.hashGenesisBlock == uint256S("0x616c277d36f7839a9dc6d00c2c6fc36b06adcca19eecf842070f11f72012abd9"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa80b040b50b0b288391276356d696aa8437f5a0d55be32daa29b9bda0a2cd81f"));
 
-        vSeeds.emplace_back("node01.reaction.network");
-        vSeeds.emplace_back("node02.reaction.network");
-        vSeeds.emplace_back("node03.reaction.network");
-        vSeeds.emplace_back("node04.reaction.network");
-        vSeeds.emplace_back("node05.reaction.network");
-        vSeeds.emplace_back("node06.reaction.network");
-        vSeeds.emplace_back("node07.reaction.network");
-        vSeeds.emplace_back("node08.reaction.network");
-        vSeeds.emplace_back("node09.reaction.network");
-        vSeeds.emplace_back("node10.reaction.network");
-        vSeeds.emplace_back("node11.reaction.network");
-        vSeeds.emplace_back("node12.reaction.network");
+vSeeds.emplace_back("node01.dunduck.net");
+vSeeds.emplace_back("node02.dunduck.net");
+vSeeds.emplace_back("node03.dunduck.net");
 
 
-
-        // Reaction addresses start with 'R'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,61);
-        // Reaction script addresses start with '7'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,102);
-        // Reaction private keys start with '7' or 'X'
+        // Dunduck addresses start with 'd'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,90);
+        // Dunduck script addresses start with 'U'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,68);
+        // Dunduck private keys start with '7' or 'X'
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
-        // Reaction BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // Dunduck BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xAD, 0xE3};
-        // Reaction BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // Dunduck BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        // Reaction BIP44 coin type is '5'
+        // Dunduck BIP44 coin type is '5'
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 200 : std::stoi(strExtCoinType);
 //        if(gArgs.GetChainName() == CBaseChainParams::MAIN) {
@@ -619,16 +609,16 @@ public:
         nPoolNewMaxParticipants = 20;
         nFulfilledRequestExpireTime = 60*60; // fulfilled requests expire in 1 hour
 
-        vSporkAddresses = {"RhsWochjwdFBJvTkUnWVtAPsPDHSCEzsUb"};
+        vSporkAddresses = {"dVUk7AWDZRkCiXTfee2Ht9MLM2CZ6DmuPA"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
         checkpointData = {
-          {  {0, uint256S("0xf3e7df1c335fb2866ca7ddbc30adecd9bc5b98e980182ac95aafc23799cbc79b")} } 
+          {  {0, uint256S("")} } 
 	};
 
         chainTxData = ChainTxData{
-          1691601216,   // * UNIX timestamp of last known number of transactions (Block 0)
+          1701624839,   // * UNIX timestamp of last known number of transactions (Block 0)
               0,   // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
               0    // * estimated number of transactions per second after that timestamp
@@ -668,8 +658,8 @@ public:
         consensus.DIP0008Enabled = true;
         // consensus.DIP0003EnforcementHeight = 7300;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Reaction: 1 day
-        consensus.nPowTargetSpacing = 60; // Reaction: 1 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dunduck: 1 day
+        consensus.nPowTargetSpacing = 60; // Dunduck: 1 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -696,43 +686,39 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0"); // 0
 
-        pchMessageStart[0]  = 0xd5;
-        pchMessageStart[1]  = 0xc1;
-        pchMessageStart[2]  = 0xc5;
-        pchMessageStart[3]  = 0x23;
-        nDefaultPort = 11228;
+        pchMessageStart[0]  = 0xd4;
+        pchMessageStart[1]  = 0xc2;
+        pchMessageStart[2]  = 0xc1;
+        pchMessageStart[3]  = 0x25;
+        nDefaultPort = 21328;
         nPruneAfterHeight = 1000;
-        //FindMainNetGenesisBlock(1663169590,  0x20001fff, "test");
-        genesis = CreateGenesisBlock(1691601216, 391, 0x20001cff, 4, 5000 * COIN);
+        //FindMainNetGenesisBlock(1701624839,  0x20001cff, "test");
+        genesis = CreateGenesisBlock(1701624839, 4964, 0x20001cff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("f3e7df1c335fb2866ca7ddbc30adecd9bc5b98e980182ac95aafc23799cbc79b"));
-        assert(genesis.hashMerkleRoot == uint256S("bc0f74299442fbf40b87f7f371c71dbd528d18f7d4a8351b4be53e3544c426da"));
+assert(consensus.hashGenesisBlock == uint256S("0x146e80339d92602832b87068dd2429b0646440b62fa03ee987b984279373a5c8"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa80b040b50b0b288391276356d696aa8437f5a0d55be32daa29b9bda0a2cd81f"));
 
         vFixedSeeds.clear();
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("test.node01.reaction.network");
-        vSeeds.emplace_back("test.node02.reaction.network");
-        vSeeds.emplace_back("test.node03.reaction.network");
-        vSeeds.emplace_back("test.node04.reaction.network");
-        vSeeds.emplace_back("test.node05.reaction.network");
-        vSeeds.emplace_back("test.node06.reaction.network");
+vSeeds.emplace_back("node01.dunduck.net");
+vSeeds.emplace_back("node02.dunduck.net");
+vSeeds.emplace_back("node03.dunduck.net");
 
-
-        // Testnet Reaction addresses start with 'r'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,122);
-        // Testnet Reaction script addresses start with '8' or '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,105);
+        // Testnet Dunduck addresses start with 'r'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,90);
+        // Testnet Dunduck script addresses start with '8' or '9'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,64);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,206);
-        // Testnet Reaction BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Dunduck BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCE};
-        // Testnet Reaction BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Dunduck BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x87, 0xCE};
 
-        // Testnet Reaction BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Dunduck BIP44 coin type is '1' (All coin's testnet default)
         std::string strExtCoinType = gArgs.GetArg("-extcoinindex", "");
         nExtCoinType = strExtCoinType.empty() ? 10227 : std::stoi(strExtCoinType);
 
@@ -753,7 +739,7 @@ assert(consensus.hashGenesisBlock == uint256S("f3e7df1c335fb2866ca7ddbc30adecd9b
         consensus.nFutureRewardShare = Consensus::FutureRewardShare(0.8,0.2,0.0);
 
         std::vector<FounderRewardStructure> rewardStructures = {  {INT_MAX, 5}  };// 5% founder/dev fee forever
-        consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "B9E9r1gMZW2Y6aCngZHKsps6wHPCzMd7un"); //change
+        consensus.nFounderPayment = FounderPayment(rewardStructures, 200, "daR8iV2kTBxeUTcXbqeWd1cc2Hk9QWBzeP"); //change
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
@@ -770,7 +756,7 @@ assert(consensus.hashGenesisBlock == uint256S("f3e7df1c335fb2866ca7ddbc30adecd9b
         nPoolNewMaxParticipants = 20;
         nFulfilledRequestExpireTime = 5*60; // fulfilled requests expire in 5 minutes
 
-        vSporkAddresses = {"rC95g3o8mKGiodRAWBK2Q5uR47pWdUkLeD"};
+        vSporkAddresses = {"dK8cgDouRDCwDVkRSVSURKzXEGbVjYXSuL"};
         nMinSporkKeys = 1;
         fBIP9CheckSmartnodesUpgraded = true;
 
@@ -781,7 +767,7 @@ assert(consensus.hashGenesisBlock == uint256S("f3e7df1c335fb2866ca7ddbc30adecd9b
         };
 
         chainTxData = ChainTxData{
-            1663169590, // * UNIX timestamp of last known number of transactions (Block 213054)
+            1701624839, // * UNIX timestamp of last known number of transactions (Block 213054)
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0        // * estimated number of transactions per second after that timestamp
@@ -822,8 +808,8 @@ public:
         consensus.DIP0008Enabled = true;// DIP0008 activated immediately on devnet
        // consensus.DIP0003EnforcementHeight = 2; // DIP0003 activated immediately on devnet
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Reaction: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Reaction: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dunduck: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Dunduck: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nPowDGWHeight = 60;
@@ -871,20 +857,20 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        //vSeeds.push_back(CDNSSeedData("reactionevo.org",  "devnet-seed.reactionevo.org"));
+        //vSeeds.push_back(CDNSSeedData("dunduckevo.io",  "devnet-seed.dunduckevo.io"));
 
-        // Testnet Reaction addresses start with 'y'
+        // Testnet Dunduck addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,127);
-        // Testnet Reaction script addresses start with '8' or '9'
+        // Testnet Dunduck script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Testnet Reaction BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet Dunduck BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Testnet Reaction BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet Dunduck BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Testnet Reaction BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet Dunduck BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params
@@ -961,8 +947,8 @@ public:
         consensus.DIP0003Enabled = true;
        // consensus.DIP0003EnforcementHeight = 500;
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 1
-        consensus.nPowTargetTimespan = 24 * 60 * 60; // Reaction: 1 day
-        consensus.nPowTargetSpacing = 2.5 * 60; // Reaction: 2.5 minutes
+        consensus.nPowTargetTimespan = 24 * 60 * 60; // Dunduck: 1 day
+        consensus.nPowTargetSpacing = 2.5 * 60; // Dunduck: 2.5 minutes
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.nPowDGWHeight = 60;
@@ -1039,18 +1025,18 @@ public:
             0
         };
 
-        // Regtest Reaction addresses start with 'y'
+        // Regtest Dunduck addresses start with 'y'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,140);
-        // Regtest Reaction script addresses start with '8' or '9'
+        // Regtest Dunduck script addresses start with '8' or '9'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,19);
         // Regtest private keys start with '9' or 'c' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
-        // Regtest Reaction BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Regtest Dunduck BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        // Regtest Reaction BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Regtest Dunduck BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Regtest Reaction BIP44 coin type is '1' (All coin's testnet default)
+        // Regtest Dunduck BIP44 coin type is '1' (All coin's testnet default)
         nExtCoinType = 1;
 
         // long living quorum params

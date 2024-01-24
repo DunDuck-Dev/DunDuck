@@ -34,7 +34,7 @@ namespace interfaces {
 class Handler;
 class Wallet;
 
-//! Interface for the src/evo part of a reaction node (reactiond process).
+//! Interface for the src/evo part of a dunduck node (dunduckd process).
 class EVO
 {
 public:
@@ -42,7 +42,7 @@ public:
     virtual CDeterministicMNList getListAtChainTip() = 0;
 };
 
-//! Interface for the src/llmq part of a reaction node (reactiond process).
+//! Interface for the src/llmq part of a dunduck node (dunduckd process).
 class LLMQ
 {
 public:
@@ -50,7 +50,7 @@ public:
     virtual size_t getInstantSentLockCount() = 0;
 };
 
-//! Interface for the src/masternode part of a reaction node (reactiond process).
+//! Interface for the src/masternode part of a dunduck node (dunduckd process).
 namespace Smartnode
 {
 class Sync
@@ -88,7 +88,7 @@ public:
 };
 }
 
-//! Top-level interface for a reaction node (reactiond process).
+//! Top-level interface for a dunduck node (dunduckd process).
 class Node
 {
 public:

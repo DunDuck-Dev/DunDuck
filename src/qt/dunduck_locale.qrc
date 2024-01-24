@@ -1,0 +1,25 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="ar">locale/dunduck_ar.qm</file>
+        <file alias="bg">locale/dunduck_bg.qm</file>
+        <file alias="de">locale/dunduck_de.qm</file>
+        <file alias="en">locale/dunduck_en.qm</file>
+        <file alias="es">locale/dunduck_es.qm</file>
+        <file alias="fi">locale/dunduck_fi.qm</file>
+        <file alias="fr">locale/dunduck_fr.qm</file>
+        <file alias="it">locale/dunduck_it.qm</file>
+        <file alias="ja">locale/dunduck_ja.qm</file>
+        <file alias="ko">locale/dunduck_ko.qm</file>
+        <file alias="nl">locale/dunduck_nl.qm</file>
+        <file alias="pl">locale/dunduck_pl.qm</file>
+        <file alias="pt">locale/dunduck_pt.qm</file>
+        <file alias="ro">locale/dunduck_ro.qm</file>
+        <file alias="ru">locale/dunduck_ru.qm</file>
+        <file alias="sk">locale/dunduck_sk.qm</file>
+        <file alias="th">locale/dunduck_th.qm</file>
+        <file alias="tr">locale/dunduck_tr.qm</file>
+        <file alias="vi">locale/dunduck_vi.qm</file>
+        <file alias="zh_CN">locale/dunduck_zh_CN.qm</file>
+        <file alias="zh_TW">locale/dunduck_zh_TW.qm</file>
+    </qresource>
+</RCC>

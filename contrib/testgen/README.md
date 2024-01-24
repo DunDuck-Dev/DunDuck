@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven Reaction tests.
+Utilities to generate test vectors for the data-driven Dunduck tests.
 
 Usage: 
 

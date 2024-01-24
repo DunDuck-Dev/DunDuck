@@ -4,7 +4,7 @@
 
 #include <compressor.h>
 #include <util.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <stdint.h>
 

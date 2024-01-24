@@ -157,7 +157,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../reaction.qrc"/>
+  <include location="../dunduck.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The Dash Core developers
-// Copyright (c) 2020-2022 The Reaction developers
+// Copyright (c) 2020-2022 The Dunduck developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -165,10 +165,10 @@ UniValue getcoinjoininfo(const JSONRPCRequest& request)
 static const CRPCCommand commands[] =
     { //  category              name                      actor (function)         argNames
         //  --------------------- ------------------------  ---------------------------------
-        { "reaction",               "getpoolinfo",            &getpoolinfo,            {} },
-        { "reaction",               "getcoinjoininfo",        &getcoinjoininfo,        {} },
+        { "dunduck",               "getpoolinfo",            &getpoolinfo,            {} },
+        { "dunduck",               "getcoinjoininfo",        &getcoinjoininfo,        {} },
 #ifdef ENABLE_WALLET
-        { "reaction",               "coinjoin",               &coinjoin,               {} },
+        { "dunduck",               "coinjoin",               &coinjoin,               {} },
 #endif // ENABLE_WALLET
 };
 

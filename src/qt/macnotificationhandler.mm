@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"org.reaction.Reaction-Qt";
+        return @"org.dunduck.Dunduck-Qt";
     } else {
         return [self __bundleIdentifier];
     }

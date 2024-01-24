@@ -6,7 +6,7 @@
 #include <script/interpreter.h>
 
 #include <test/lcg.h>
-#include <test/test_reaction.h>
+#include <test/test_dunduck.h>
 
 #include <boost/test/unit_test.hpp>
 

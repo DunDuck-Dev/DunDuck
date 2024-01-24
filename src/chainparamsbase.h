@@ -10,8 +10,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between reaction-cli and reactiond)
- * of a given instance of the Reaction system.
+ * CBaseChainParams defines the base parameters (shared between dunduck-cli and dunduckd)
+ * of a given instance of the Dunduck system.
  */
 class CBaseChainParams
 {

@@ -543,8 +543,8 @@ public:
         //FindMainNetGenesisBlock(1701624837, 0x20001cff, "main");
         genesis = CreateGenesisBlock(1701624837, 383, 0x20001cff, 4, 5000 * COIN); // 391
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x616c277d36f7839a9dc6d00c2c6fc36b06adcca19eecf842070f11f72012abd9"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa80b040b50b0b288391276356d696aa8437f5a0d55be32daa29b9bda0a2cd81f"));
+        assert(consensus.hashGenesisBlock == uint256S("0x616c277d36f7839a9dc6d00c2c6fc36b06adcca19eecf842070f11f72012abd9")); //main block
+        assert(genesis.hashMerkleRoot == uint256S("0xa80b040b50b0b288391276356d696aa8437f5a0d55be32daa29b9bda0a2cd81f")); //hashmrkl
 
 vSeeds.emplace_back("node01.dunduck.net");
 vSeeds.emplace_back("node02.dunduck.net");
